@@ -1,7 +1,12 @@
 package com.wegneto.springin5steps;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class BinarySearchImpl {
 	
+	@Autowired
 	private SortAlgorithm sortAlgorithm;
 	
 	public BinarySearchImpl(SortAlgorithm sortAlgorithm) {
@@ -10,11 +15,8 @@ public class BinarySearchImpl {
 	}
 
 	public int binarySearch(int[] numbers, int numberToSearchFor) {
-		//Sorting an array
 		int[] result = sortAlgorithm.sort(new int[] {3,2,1});
 		System.out.println(sortAlgorithm);
-		
-		//Search the array
 		
 		return 3;
 	}
