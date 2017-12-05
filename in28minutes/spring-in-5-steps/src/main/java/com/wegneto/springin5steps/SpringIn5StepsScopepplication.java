@@ -7,13 +7,13 @@ import org.springframework.context.ApplicationContext;
 import com.wegneto.springin5steps.basic.BinarySearchImpl;
 
 @SpringBootApplication
-public class SpringIn5StepsApplication {
+public class SpringIn5StepsScopepplication {
 	
 	//What are the beans?
 	//What are the dependencies of a bean?
 	//Where to search for beans?
 	public static void main(String[] args) {
-		ApplicationContext applicationContext = SpringApplication.run(SpringIn5StepsApplication.class, args);
+		ApplicationContext applicationContext = SpringApplication.run(SpringIn5StepsScopepplication.class, args);
 		
 		BinarySearchImpl binarySearch = applicationContext.getBean(BinarySearchImpl.class);
 		
