@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 public class PersonDAO {
 
 	@Autowired
-	private
-	JdbcConnection jdbcConnection;
+	private JdbcConnection jdbcConnection;
 
 	public JdbcConnection getJdbcConnection() {
 		return jdbcConnection;
