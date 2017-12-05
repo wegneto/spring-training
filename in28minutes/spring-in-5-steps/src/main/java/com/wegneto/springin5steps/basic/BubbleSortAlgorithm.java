@@ -1,15 +1,14 @@
-package com.wegneto.springin5steps;
+package com.wegneto.springin5steps.basic;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("quicksort")
-public class QuickSortAlgorithm implements SortAlgorithm {
+@Qualifier("bubblesort")
+public class BubbleSortAlgorithm implements SortAlgorithm {
 
 	public int[] sort(int[] unsortedArray) {
-		//logic for quick sort
+		//logic for bubble sort
 		return unsortedArray;
 	}
 	
