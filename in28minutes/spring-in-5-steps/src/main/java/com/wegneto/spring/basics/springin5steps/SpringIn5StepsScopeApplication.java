@@ -1,4 +1,4 @@
-package com.wegneto.springin5steps;
+package com.wegneto.spring.basics.springin5steps;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.wegneto.springin5steps.scope.PersonDAO;
+import com.wegneto.spring.basics.springin5steps.scope.PersonDAO;
 
 @SpringBootApplication
 public class SpringIn5StepsScopeApplication {
@@ -21,6 +21,7 @@ public class SpringIn5StepsScopeApplication {
 		PersonDAO personDAO2 = applicationContext.getBean(PersonDAO.class);
 
 		LOGGER.info("{}", personDAO1);
+		LOGGER.info("{}", personDAO1.getJdbcConnection());
 		LOGGER.info("{}", personDAO1.getJdbcConnection());
 
 		LOGGER.info("{}", personDAO2);

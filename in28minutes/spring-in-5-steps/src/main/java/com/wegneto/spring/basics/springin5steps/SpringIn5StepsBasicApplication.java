@@ -1,10 +1,10 @@
-package com.wegneto.springin5steps;
+package com.wegneto.spring.basics.springin5steps;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.wegneto.springin5steps.basic.BinarySearchImpl;
+import com.wegneto.spring.basics.springin5steps.basic.BinarySearchImpl;
 
 @SpringBootApplication
 public class SpringIn5StepsBasicApplication {

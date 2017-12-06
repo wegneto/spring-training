@@ -1,4 +1,4 @@
-package com.wegneto.springin5steps.basic;
+package com.wegneto.spring.basics.springin5steps.basic;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
