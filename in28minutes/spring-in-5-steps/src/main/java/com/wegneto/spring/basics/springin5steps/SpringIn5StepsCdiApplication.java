@@ -6,19 +6,26 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.wegneto.spring.basics.springin5steps.cdi.SomeCdiBusiness;
 import com.wegneto.spring.basics.springin5steps.scope.PersonDAO;
 
 @SpringBootApplication
-public class SpringIn5StepsScopeApplication {
+public class SpringIn5StepsCdiApplication {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(SpringIn5StepsScopeApplication.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(SpringIn5StepsCdiApplication.class);
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = SpringApplication.run(SpringIn5StepsBasicApplication.class, args);
 
-		SomeCdiBusiness someCdiBusiness = applicationContext.getBean(SomeCdiBusiness.class);
+		PersonDAO personDAO1 = applicationContext.getBean(PersonDAO.class);
 
-		LOGGER.info("{} dao-{}", someCdiBusiness, someCdiBusiness.getSomeCdiDAO());
+		PersonDAO personDAO2 = applicationContext.getBean(PersonDAO.class);
+
+		LOGGER.info("{}", personDAO1);
+		LOGGER.info("{}", personDAO1.getJdbcConnection());
+		LOGGER.info("{}", personDAO1.getJdbcConnection());
+
+		LOGGER.info("{}", personDAO2);
+		LOGGER.info("{}", personDAO2.getJdbcConnection());
+
 	}
 }
