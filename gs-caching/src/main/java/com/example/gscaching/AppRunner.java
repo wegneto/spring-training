@@ -21,6 +21,10 @@ public class AppRunner implements CommandLineRunner {
 		logger.info(".... Fetching books");
 		logger.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
 		logger.info("isbn-4567 -->" + bookRepository.getByIsbn("isbn-4567"));
+		logger.info("isbn-8910 -->" + bookRepository.getByIsbn("isbn-8910"));
+		logger.info("isbn-1112 -->" + bookRepository.getByIsbn("isbn-1112"));
+		logger.info("isbn-1314 -->" + bookRepository.getByIsbn("isbn-1314"));
+		logger.info("<-- ***** -->");
 		logger.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
 		logger.info("isbn-4567 -->" + bookRepository.getByIsbn("isbn-4567"));
 		logger.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
