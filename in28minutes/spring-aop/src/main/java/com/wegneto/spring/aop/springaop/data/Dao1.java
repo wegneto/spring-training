@@ -1,4 +1,4 @@
-package com.wegneto.spring.aop.springaop;
+package com.wegneto.spring.aop.springaop.data;
 
 import org.springframework.stereotype.Repository;
 
