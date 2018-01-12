@@ -13,7 +13,7 @@ public class UserAccessAspect {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@Before("execution(* com.wegneto.spring.aop.springaop.business.*.*(..))")
+	@Before("execution(* com.wegneto.spring.aop.springaop..*.*(..))")
 	public void before(JoinPoint joinPoint) {
 		logger.info("Check for user access");
 		logger.info("Allowed execution for {}", joinPoint);
