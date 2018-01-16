@@ -8,4 +8,7 @@ public class CommonJoinPointConfig {
 	
 	@Pointcut("execution(* com.wegneto.spring.aop.springaop.business.*.*(..))")
 	public void businessLayerExecution() {}
+	
+	@Pointcut("@annotation(com.wegneto.spring.aop.springaop.aspect.TrackTime)")
+	public void trackTimeAnnotaion() {}
 }
