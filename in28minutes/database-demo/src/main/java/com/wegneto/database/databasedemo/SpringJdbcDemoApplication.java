@@ -12,8 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.wegneto.database.databasedemo.entity.Person;
 import com.wegneto.database.databasedemo.jdbc.PersonJdbcDAO;
 
-@SpringBootApplication
-public class DatabaseDemoApplication implements CommandLineRunner {
+//@SpringBootApplication
+public class SpringJdbcDemoApplication implements CommandLineRunner {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -21,7 +21,7 @@ public class DatabaseDemoApplication implements CommandLineRunner {
 	private PersonJdbcDAO personJdbcDAO;
 	
 	public static void main(String[] args){
-		SpringApplication.run(DatabaseDemoApplication.class, args);
+		SpringApplication.run(SpringJdbcDemoApplication.class, args);
 	}
 
 	@Override
