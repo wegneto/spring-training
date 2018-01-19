@@ -30,9 +30,6 @@ public class JpaDemoApplication implements CommandLineRunner {
 		logger.info("Inserting 10004 -> {}", personJpaRepository.insert(new Person("Tara", "Berlin", new Date())));
 		logger.info("Updating 10003 -> {}", personJpaRepository.update(new Person(10003, "New Name", "Berlin", new Date())));
 		personJpaRepository.delete(10001);
-		/*
-		logger.info("All users -> {}", personJdbcDAO.findAll());
-		logger.info("Deleting 10002 -> # of rows deleted {}", personJdbcDAO.deleteById(10002));
-		*/
+		logger.info("All users -> {}", personJpaRepository.findAll());
 	}
 }
