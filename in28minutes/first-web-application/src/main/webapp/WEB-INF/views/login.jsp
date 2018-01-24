@@ -14,11 +14,14 @@
 		%>
 		<div	>Current date is <%=date%></div>
 		<form action="/login.do" method="post">
-			<p>
-				<font color="red">
-					${errorMessage}
-				</font>
-			</p>
+			<%
+			String errorMessage = (String) request.getAttribute("errorMessage");
+			if (errorMessage != null && !errorMessage.isEmpty()) {
+			%>
+			<p><font color="red"><%=errorMessage%></font></p>
+			<%
+			}
+			%>
 			Name: <input type="text" name="name" /> Password: <input type="password" name="password" /> <input type="submit" value="Login" />
 		</form>
 	</body>
