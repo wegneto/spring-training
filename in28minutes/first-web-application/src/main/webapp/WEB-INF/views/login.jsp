@@ -1,4 +1,3 @@
-<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,21 +7,11 @@
 		<title>Login</title>
 	</head>
 	<body>
-		My First JSP ${name}
-		<%
-		Date date = new Date();
-		%>
-		<div	>Current date is <%=date%></div>
 		<form action="/login.do" method="post">
-			<%
-			String errorMessage = (String) request.getAttribute("errorMessage");
-			if (errorMessage != null && !errorMessage.isEmpty()) {
-			%>
-			<p><font color="red"><%=errorMessage%></font></p>
-			<%
-			}
-			%>
-			Name: <input type="text" name="name" /> Password: <input type="password" name="password" /> <input type="submit" value="Login" />
+			<p><font color="red">${errorMessage}</font></p>
+			<p>Name: <input type="text" name="name" /></p>
+			<p>Password: <input type="password" name="password" /></p> 
+			<p><input type="submit" value="Login" /></p>
 		</form>
 	</body>
 </html>
