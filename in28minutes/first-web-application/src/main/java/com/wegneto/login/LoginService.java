@@ -1,4 +1,4 @@
-package com.wegneto.jee;
+package com.wegneto.login;
 
 public class LoginService {
 

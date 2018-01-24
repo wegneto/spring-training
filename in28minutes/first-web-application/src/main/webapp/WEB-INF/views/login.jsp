@@ -7,7 +7,7 @@
 		<title>Login</title>
 	</head>
 	<body>
-		<form action="/spring-mvc/login.do" method="post">
+		<form action="/login" method="post">
 			<p><font color="red">${errorMessage}</font></p>
 			<p>Name: <input type="text" name="name" /></p>
 			<p>Password: <input type="password" name="password" /></p> 
