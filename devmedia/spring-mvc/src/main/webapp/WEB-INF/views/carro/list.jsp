@@ -17,7 +17,7 @@
                </tr>
            </thead>
            <tbody>
-               <c:forEach var="carro" items="$">
+               <c:forEach var="carro" items="${carros}">
                    <tr>
                        <td>${carro.modelo}</td>
                        <td>${carro.marca}</td>
