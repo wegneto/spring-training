@@ -1,8 +1,10 @@
 package com.wegneto.spring.mvc.domain;
 
+import java.util.UUID;
+
 public class Usuario {
 
-	private Long id;
+	private UUID id;
 	
 	private String nome;
 	
@@ -11,17 +13,17 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nome, String sobrenome) {
+	public Usuario(UUID id, String nome, String sobrenome) {
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 	}
 
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
