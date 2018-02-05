@@ -16,7 +16,7 @@ public class WelcomeController {
 	@RequestMapping(value = "/teste", method = RequestMethod.GET)
 	public ModelAndView teste() {
 		ModelAndView view = new ModelAndView("welcome");
-		view.addObject("teste", "este texto veio do backend");
+		view.addObject("texto", "Spring MVC test app");
 		
 		return view;
 	}
