@@ -14,12 +14,12 @@
 		<h1>Cadastro de Usuários</h1>
 		<hr>
 		<div>
-
-			<a class="btn btn-default" href="#">Home</a>
+			<spring:url value="/usuario/todos" var="home" />
+			<a class="btn btn-default" href="${home}">Home</a>
 		</div>
 		<hr>
 		<div>
-			<spring:url value="usuario/save" var="save" />
+			<spring:url value="/usuario/save" var="save" />
 			<form:form modelAttribute="usuario" action="${save }" method="post">
 				<div class="form-group">
 					<label for="nome">Nome: </label>
