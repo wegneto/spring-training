@@ -36,7 +36,7 @@
 						<c:forEach var="usuario" items="${usuarios }">
 							<tr>
 								<td>${usuario.id }</td>
-								<td>${usuario.nome }&nbsp;${usuario.sobrenome }</td>
+								<td>${usuario.name }&nbsp;${usuario.surname }</td>
 								<td>
 									<spring:url value="/user/edit/${usuario.id }" var="edit" />
 									<a class="btn btn-info" href="${edit }">Editar</a> 

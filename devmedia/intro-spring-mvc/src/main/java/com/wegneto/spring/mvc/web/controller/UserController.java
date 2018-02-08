@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wegneto.spring.mvc.dao.UserDAO;
-import com.wegneto.spring.mvc.domain.Usuario;
+import com.wegneto.spring.mvc.domain.User;
 
 @Controller
 @RequestMapping("user")
@@ -31,12 +31,12 @@ public class UserController {
 	}
 	
 	@GetMapping("/create")
-	public String create(@ModelAttribute("usuario") Usuario usuario, ModelMap model) {
+	public String create(@ModelAttribute("usuario") User usuario, ModelMap model) {
 		return "/user/add";
 	}
 	
 	@PostMapping("/save")
-	public String save(@ModelAttribute("usuario") Usuario usuario, RedirectAttributes redirectAttributes) {
+	public String save(@ModelAttribute("usuario") User usuario, RedirectAttributes redirectAttributes) {
 		dao.save(usuario);
 		redirectAttributes.addFlashAttribute("message", "Usuário salvo com sucesso.");
 		return "redirect:/user/";
@@ -44,13 +44,13 @@ public class UserController {
 	
 	@GetMapping("/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") UUID id, ModelMap model) {
-		Usuario usuario = dao.findById(id);
+		User usuario = dao.findById(id);
 		model.addAttribute("usuario", usuario);
 		return new ModelAndView("/user/add", model);
 	}
 	
 	@PostMapping("/update")
-	public ModelAndView update(@ModelAttribute("usuario") Usuario usuario, RedirectAttributes redirectAttributes) {
+	public ModelAndView update(@ModelAttribute("usuario") User usuario, RedirectAttributes redirectAttributes) {
 		dao.update(usuario);
 		redirectAttributes.addFlashAttribute("message", "Usuário editado com sucesso.");
 		return new ModelAndView("redirect:/user/");

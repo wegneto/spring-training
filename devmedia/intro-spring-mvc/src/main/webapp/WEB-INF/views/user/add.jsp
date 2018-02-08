@@ -23,12 +23,12 @@
 			<form:form modelAttribute="usuario" action="${save }" method="post">
 				<form:hidden path="id" />
 				<div class="form-group">
-					<label for="nome">Nome: </label>
-					<form:input path="nome" class="form-control" />
+					<label for="name">Nome: </label>
+					<form:input path="name" class="form-control" />
 				</div>
 				<div class="form-group">
-					<label for="sobrenome">Sobrenome: </label>
-					<form:input path="sobrenome" class="form-control" />
+					<label for="surname">Sobrenome: </label>
+					<form:input path="surname" class="form-control" />
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Confirmar</button>

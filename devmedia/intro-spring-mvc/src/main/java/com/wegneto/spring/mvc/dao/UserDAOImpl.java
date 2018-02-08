@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import com.github.javafaker.Faker;
-import com.wegneto.spring.mvc.domain.Usuario;
+import com.wegneto.spring.mvc.domain.User;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
 
 	private Faker faker = new Faker();
 
-	private static List<Usuario> userList;
+	private static List<User> userList;
 
 	public UserDAOImpl() {
 		createUserList();
@@ -25,22 +25,22 @@ public class UserDAOImpl implements UserDAO {
 		if (userList == null) {
 			userList = new LinkedList<>();
 			for (int i = 1; i <= 10; i++) {
-				userList.add(new Usuario(UUID.randomUUID(), faker.name().firstName(), faker.name().lastName()));
+				userList.add(new User(UUID.randomUUID(), faker.name().firstName(), faker.name().lastName()));
 			}
 		}
 	}
 
 	@Override
-	public void save(Usuario usuario) {
+	public void save(User usuario) {
 		usuario.setId(UUID.randomUUID());
 		userList.add(usuario);
 	}
 
 	@Override
-	public void update(Usuario usuario) {
+	public void update(User usuario) {
 		userList.stream().filter(u -> u.getId().equals(usuario.getId())).forEach(u -> {
-			u.setNome(usuario.getNome());
-			u.setSobrenome(usuario.getSobrenome());
+			u.setName(usuario.getName());
+			u.setSurname(usuario.getSurname());
 		});
 	}
 
@@ -50,12 +50,12 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public Usuario findById(UUID id) {
+	public User findById(UUID id) {
 		return userList.stream().filter(u -> u.getId().equals(id)).collect(Collectors.toList()).get(0);
 	}
 
 	@Override
-	public List<Usuario> findAll() {
+	public List<User> findAll() {
 		return userList;
 	}
 
