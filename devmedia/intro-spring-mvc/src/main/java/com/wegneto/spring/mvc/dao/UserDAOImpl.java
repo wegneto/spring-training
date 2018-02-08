@@ -11,13 +11,13 @@ import com.github.javafaker.Faker;
 import com.wegneto.spring.mvc.domain.Usuario;
 
 @Repository
-public class UsuarioDAOImpl implements UsuarioDAO {
+public class UserDAOImpl implements UserDAO {
 
 	private Faker faker = new Faker();
 
 	private static List<Usuario> userList;
 
-	public UsuarioDAOImpl() {
+	public UserDAOImpl() {
 		createUserList();
 	}
 
@@ -31,13 +31,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public void salvar(Usuario usuario) {
+	public void save(Usuario usuario) {
 		usuario.setId(UUID.randomUUID());
 		userList.add(usuario);
 	}
 
 	@Override
-	public void editar(Usuario usuario) {
+	public void update(Usuario usuario) {
 		userList.stream().filter(u -> u.getId().equals(usuario.getId())).forEach(u -> {
 			u.setNome(usuario.getNome());
 			u.setSobrenome(usuario.getSobrenome());
@@ -45,14 +45,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public void excluir(UUID id) {
+	public void delete(UUID id) {
 		userList.removeIf(u -> u.getId().equals(id));
 	}
 
 	@Override
 	public Usuario findById(UUID id) {
-		return userList.stream().filter(u -> u.getId().equals(id))
-				.collect(Collectors.toList()).get(0);
+		return userList.stream().filter(u -> u.getId().equals(id)).collect(Collectors.toList()).get(0);
 	}
 
 	@Override

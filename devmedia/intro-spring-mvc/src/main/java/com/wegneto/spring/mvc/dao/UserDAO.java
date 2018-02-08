@@ -5,13 +5,13 @@ import java.util.UUID;
 
 import com.wegneto.spring.mvc.domain.Usuario;
 
-public interface UsuarioDAO {
+public interface UserDAO {
 
-	void salvar(Usuario usuario);
+	void save(Usuario usuario);
 
-	void editar(Usuario usuario);
+	void update(Usuario usuario);
 
-	void excluir(UUID id);
+	void delete(UUID id);
 
 	Usuario findById(UUID id);
 

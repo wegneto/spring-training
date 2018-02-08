@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.wegneto.spring.mvc.dao.UsuarioDAO;
+import com.wegneto.spring.mvc.dao.UserDAO;
 import com.wegneto.spring.mvc.domain.Usuario;
 
 @Controller
@@ -19,7 +19,7 @@ import com.wegneto.spring.mvc.domain.Usuario;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioDAO dao;
+	private UserDAO dao;
 
 	@RequestMapping(value = "/todos", method = RequestMethod.GET)
 	public ModelAndView listarTodos(ModelMap model) {
@@ -34,7 +34,7 @@ public class UsuarioController {
 	
 	@PostMapping("/save")
 	public String save(@ModelAttribute("usuario") Usuario usuario, RedirectAttributes redirectAttributes) {
-		dao.salvar(usuario);
+		dao.save(usuario);
 		redirectAttributes.addFlashAttribute("message", "Usuário salvo com sucesso.");
 		return "redirect:/usuario/todos";
 	}
