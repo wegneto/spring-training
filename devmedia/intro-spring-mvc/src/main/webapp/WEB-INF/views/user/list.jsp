@@ -6,15 +6,15 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Lista de Ususarios</title>
+		<title>Lista de Usuários</title>
 	</head>
 	<body>
 		<div class="container">
 			<h1>Lista de Usuários</h1>
 			<hr>
 			<div>
-				<spring:url value="/usuario/cadastro" var="cadastro" />
-				<a class="btn btn-default" href="${cadastro}">Novo Usuário</a>
+				<spring:url value="/user/create" var="create" />
+				<a class="btn btn-default" href="${create}">Novo Usuário</a>
 			</div>
 			<hr>
 	
@@ -38,8 +38,8 @@
 								<td>${usuario.id }</td>
 								<td>${usuario.nome }&nbsp;${usuario.sobrenome }</td>
 								<td>
-									<spring:url value="/usuario/update/${usuario.id }" var="update" />
-									<a class="btn btn-info" href="${update }">Editar</a> 
+									<spring:url value="/user/edit/${usuario.id }" var="edit" />
+									<a class="btn btn-info" href="${edit }">Editar</a> 
 									<a class="btn btn-danger" href="#">Excluir</a></td>
 							</tr>
 						</c:forEach>

@@ -14,12 +14,12 @@
 		<h1>Cadastro de Usuários</h1>
 		<hr>
 		<div>
-			<spring:url value="/usuario/todos" var="home" />
+			<spring:url value="/user/" var="home" />
 			<a class="btn btn-default" href="${home}">Home</a>
 		</div>
 		<hr>
 		<div>
-			<spring:url value="${usuario.id == null ? '/usuario/save' : '/usuario/update' }" var="save" />
+			<spring:url value="${usuario.id == null ? '/user/save' : '/user/update' }" var="save" />
 			<form:form modelAttribute="usuario" action="${save }" method="post">
 				<form:hidden path="id" />
 				<div class="form-group">

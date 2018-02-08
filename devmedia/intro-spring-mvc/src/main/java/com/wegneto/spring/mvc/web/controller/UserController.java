@@ -18,20 +18,20 @@ import com.wegneto.spring.mvc.dao.UserDAO;
 import com.wegneto.spring.mvc.domain.Usuario;
 
 @Controller
-@RequestMapping("usuario")
-public class UsuarioController {
+@RequestMapping("user")
+public class UserController {
 
 	@Autowired
 	private UserDAO dao;
 
-	@RequestMapping(value = "/todos", method = RequestMethod.GET)
-	public ModelAndView listarTodos(ModelMap model) {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView listAll(ModelMap model) {
 		model.addAttribute("usuarios", dao.findAll());
 		return new ModelAndView("/user/list", model);
 	}
 	
-	@GetMapping("/cadastro")
-	public String cadastro(@ModelAttribute("usuario") Usuario usuario, ModelMap model) {
+	@GetMapping("/create")
+	public String create(@ModelAttribute("usuario") Usuario usuario, ModelMap model) {
 		return "/user/add";
 	}
 	
@@ -39,11 +39,11 @@ public class UsuarioController {
 	public String save(@ModelAttribute("usuario") Usuario usuario, RedirectAttributes redirectAttributes) {
 		dao.save(usuario);
 		redirectAttributes.addFlashAttribute("message", "Usuário salvo com sucesso.");
-		return "redirect:/usuario/todos";
+		return "redirect:/user/";
 	}
 	
-	@GetMapping("/update/{id}")
-	public ModelAndView preUpdate(@PathVariable("id") UUID id, ModelMap model) {
+	@GetMapping("/edit/{id}")
+	public ModelAndView edit(@PathVariable("id") UUID id, ModelMap model) {
 		Usuario usuario = dao.findById(id);
 		model.addAttribute("usuario", usuario);
 		return new ModelAndView("/user/add", model);
@@ -53,7 +53,7 @@ public class UsuarioController {
 	public ModelAndView update(@ModelAttribute("usuario") Usuario usuario, RedirectAttributes redirectAttributes) {
 		dao.update(usuario);
 		redirectAttributes.addFlashAttribute("message", "Usuário editado com sucesso.");
-		return new ModelAndView("redirect:/usuario/todos");
+		return new ModelAndView("redirect:/user/");
 	}
 
 }
