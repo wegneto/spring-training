@@ -55,5 +55,12 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message", "Usuário editado com sucesso.");
 		return new ModelAndView("redirect:/user/");
 	}
+	
+	@GetMapping("/remove/{id}")
+	public String remove(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
+		dao.delete(id);
+		redirectAttributes.addFlashAttribute("message", "Usuário excluido com sucesso.");
+		return "redirect:/user/";
+	}
 
 }
