@@ -26,17 +26,17 @@ public class UserController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView listAll(ModelMap model) {
-		model.addAttribute("usuarios", dao.findAll());
+		model.addAttribute("users", dao.findAll());
 		return new ModelAndView("/user/list", model);
 	}
 	
 	@GetMapping("/create")
-	public String create(@ModelAttribute("usuario") User usuario, ModelMap model) {
+	public String create(@ModelAttribute("user") User usuario, ModelMap model) {
 		return "/user/add";
 	}
 	
 	@PostMapping("/save")
-	public String save(@ModelAttribute("usuario") User usuario, RedirectAttributes redirectAttributes) {
+	public String save(@ModelAttribute("user") User usuario, RedirectAttributes redirectAttributes) {
 		dao.save(usuario);
 		redirectAttributes.addFlashAttribute("message", "Usuário salvo com sucesso.");
 		return "redirect:/user/";
@@ -45,12 +45,12 @@ public class UserController {
 	@GetMapping("/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") UUID id, ModelMap model) {
 		User usuario = dao.findById(id);
-		model.addAttribute("usuario", usuario);
+		model.addAttribute("user", usuario);
 		return new ModelAndView("/user/add", model);
 	}
 	
 	@PostMapping("/update")
-	public ModelAndView update(@ModelAttribute("usuario") User usuario, RedirectAttributes redirectAttributes) {
+	public ModelAndView update(@ModelAttribute("user") User usuario, RedirectAttributes redirectAttributes) {
 		dao.update(usuario);
 		redirectAttributes.addFlashAttribute("message", "Usuário editado com sucesso.");
 		return new ModelAndView("redirect:/user/");

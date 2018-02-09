@@ -34,13 +34,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="usuario" items="${usuarios }">
+					<c:forEach var="user" items="${users }">
 						<tr>
-							<td>${usuario.id }</td>
-							<td>${usuario.name }&nbsp;${usuario.surname }</td>
-							<td><spring:url value="/user/edit/${usuario.id }" var="edit" />
+							<td>${user.id }</td>
+							<td>${user.name }&nbsp;${user.surname }</td>
+							<td><spring:url value="/user/edit/${user.id }" var="edit" />
 								<a class="btn btn-info" href="${edit }">Editar</a> <spring:url
-									value="/user/remove/${usuario.id }" var="remove" /> <a
+									value="/user/remove/${user.id }" var="remove" /> <a
 								class="btn btn-danger" href="${remove}">Excluir</a></td>
 						</tr>
 					</c:forEach>
