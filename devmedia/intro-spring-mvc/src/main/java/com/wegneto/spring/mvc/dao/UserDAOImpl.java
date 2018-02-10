@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import com.github.javafaker.Faker;
+import com.wegneto.spring.mvc.domain.Gender;
 import com.wegneto.spring.mvc.domain.User;
 
 @Repository
@@ -26,8 +27,9 @@ public class UserDAOImpl implements UserDAO {
 		if (userList == null) {
 			userList = new LinkedList<>();
 			for (int i = 1; i <= 10; i++) {
+				Gender gender = i % 2 == 0 ? Gender.MALE : Gender.FEMALE;
 				userList.add(new User(UUID.randomUUID(), faker.name().firstName(), faker.name().lastName(),
-						faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()));
+						faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), gender));
 			}
 		}
 	}
@@ -44,6 +46,7 @@ public class UserDAOImpl implements UserDAO {
 			u.setName(user.getName());
 			u.setSurname(user.getSurname());
 			u.setBirthday(user.getBirthday());
+			u.setGender(user.getGender());
 		});
 	}
 

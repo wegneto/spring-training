@@ -17,6 +17,8 @@ public class User {
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate birthday;
 
+	private Gender gender;
+
 	public User() {
 	}
 
@@ -25,13 +27,22 @@ public class User {
 		this.name = name;
 		this.surname = surname;
 	}
-	
+
 	public User(UUID id, String name, String surname, LocalDate birthday) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.birthday = birthday;
+	}
+
+	public User(UUID id, String name, String surname, LocalDate birthday, Gender gender) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.birthday = birthday;
+		this.gender = gender;
 	}
 
 	public UUID getId() {
@@ -64,6 +75,14 @@ public class User {
 
 	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	@Override

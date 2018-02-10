@@ -35,6 +35,12 @@
 					<form:input path="birthday" class="form-control" type="date" />
 				</div>
 				<div class="form-group">
+					<label for="gender">Gênero: </label>
+					<form:select path="gender" class="form-control">
+						<form:options item="${genders}" itemLabel="description" />
+					</form:select>
+				</div>
+				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Confirmar</button>
 				</div>
 			</form:form>

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wegneto.spring.mvc.dao.UserDAO;
+import com.wegneto.spring.mvc.domain.Gender;
 import com.wegneto.spring.mvc.domain.User;
 
 @Controller
@@ -32,6 +33,7 @@ public class UserController {
 	
 	@GetMapping("/create")
 	public String create(@ModelAttribute("user") User user, ModelMap model) {
+		model.addAttribute("genders", Gender.values());
 		return "/user/add";
 	}
 	

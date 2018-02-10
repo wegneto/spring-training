@@ -31,6 +31,7 @@
 						<th>ID</th>
 						<th>NOME</th>
 						<th>DATA DE NASCIMENTO</th>
+						<th>GÊNERO</th>
 						<th>AÇÃO</th>
 					</tr>
 				</thead>
@@ -43,6 +44,7 @@
 								<f:parseDate var="date" value="${user.birthday}" pattern="yyyy-MM-dd" type="date" />
 								<f:formatDate value="${date}" pattern="dd/MM/yyyy" type="date" />
 							</td>
+							<td>${user.gender.description }</td>
 							<td><spring:url value="/user/edit/${user.id }" var="edit" />
 								<a class="btn btn-info" href="${edit }">Editar</a> <spring:url
 									value="/user/remove/${user.id }" var="remove" /> <a
