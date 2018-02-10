@@ -1,6 +1,10 @@
 package com.wegneto.spring.mvc.domain;
 
+import java.time.LocalDate;
 import java.util.UUID;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class User {
 
@@ -10,6 +14,9 @@ public class User {
 
 	private String surname;
 
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate birthday;
+
 	public User() {
 	}
 
@@ -17,6 +24,14 @@ public class User {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
+	}
+	
+	public User(UUID id, String name, String surname, LocalDate birthday) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.birthday = birthday;
 	}
 
 	public UUID getId() {
@@ -43,9 +58,17 @@ public class User {
 		this.surname = surname;
 	}
 
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", surname=" + surname + "]";
 	}
-	
+
 }

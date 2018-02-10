@@ -19,7 +19,7 @@
 		</div>
 		<hr>
 		<div>
-			<spring:url value="${usuario.id == null ? '/user/save' : '/user/update' }" var="save" />
+			<spring:url value="${user.id == null ? '/user/save' : '/user/update' }" var="save" />
 			<form:form modelAttribute="user" action="${save }" method="post">
 				<form:hidden path="id" />
 				<div class="form-group">
@@ -29,6 +29,10 @@
 				<div class="form-group">
 					<label for="surname">Sobrenome: </label>
 					<form:input path="surname" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label for="birthday">Data de nascimento: </label>
+					<form:input path="birthday" class="form-control" type="date" />
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Confirmar</button>

@@ -31,13 +31,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/create")
-	public String create(@ModelAttribute("user") User usuario, ModelMap model) {
+	public String create(@ModelAttribute("user") User user, ModelMap model) {
 		return "/user/add";
 	}
 	
 	@PostMapping("/save")
-	public String save(@ModelAttribute("user") User usuario, RedirectAttributes redirectAttributes) {
-		dao.save(usuario);
+	public String save(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
+		dao.save(user);
 		redirectAttributes.addFlashAttribute("message", "Usuário salvo com sucesso.");
 		return "redirect:/user/";
 	}
@@ -50,8 +50,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/update")
-	public ModelAndView update(@ModelAttribute("user") User usuario, RedirectAttributes redirectAttributes) {
-		dao.update(usuario);
+	public ModelAndView update(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
+		dao.update(user);
 		redirectAttributes.addFlashAttribute("message", "Usuário editado com sucesso.");
 		return new ModelAndView("redirect:/user/");
 	}

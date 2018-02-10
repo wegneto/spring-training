@@ -1,5 +1,6 @@
 package com.wegneto.spring.mvc.dao;
 
+import java.time.ZoneId;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -25,7 +26,8 @@ public class UserDAOImpl implements UserDAO {
 		if (userList == null) {
 			userList = new LinkedList<>();
 			for (int i = 1; i <= 10; i++) {
-				userList.add(new User(UUID.randomUUID(), faker.name().firstName(), faker.name().lastName()));
+				userList.add(new User(UUID.randomUUID(), faker.name().firstName(), faker.name().lastName(),
+						faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()));
 			}
 		}
 	}
@@ -37,10 +39,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void update(User usuario) {
-		userList.stream().filter(u -> u.getId().equals(usuario.getId())).forEach(u -> {
-			u.setName(usuario.getName());
-			u.setSurname(usuario.getSurname());
+	public void update(User user) {
+		userList.stream().filter(u -> u.getId().equals(user.getId())).forEach(u -> {
+			u.setName(user.getName());
+			u.setSurname(user.getSurname());
+			u.setBirthday(user.getBirthday());
 		});
 	}
 
