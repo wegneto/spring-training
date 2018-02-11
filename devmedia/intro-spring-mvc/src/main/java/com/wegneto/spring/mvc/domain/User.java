@@ -3,6 +3,10 @@ package com.wegneto.spring.mvc.domain;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -10,10 +14,15 @@ public class User {
 
 	private UUID id;
 
+	@NotBlank
+	@Size(min = 3, max = 50)
 	private String name;
 
+	@NotBlank
+	@Size(min = 3, max = 50, message = "Surname must have between {min} and {max} chars.")
 	private String surname;
 
+	@NotNull
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate birthday;
 
