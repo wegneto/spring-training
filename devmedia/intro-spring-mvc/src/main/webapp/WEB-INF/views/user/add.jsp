@@ -25,14 +25,17 @@
 				<div class="form-group">
 					<label for="name">Nome: </label>
 					<form:input path="name" class="form-control" />
+					<form:errors path="name" cssClass="label label-danger"/>
 				</div>
 				<div class="form-group">
 					<label for="surname">Sobrenome: </label>
 					<form:input path="surname" class="form-control" />
+					<form:errors path="surname" cssClass="label label-danger"/>
 				</div>
 				<div class="form-group">
 					<label for="birthday">Data de nascimento: </label>
 					<form:input path="birthday" class="form-control" type="date" />
+					<form:errors path="birthday" cssClass="label label-danger"/>
 				</div>
 				<div class="form-group">
 					<label for="gender">Gênero: </label>
