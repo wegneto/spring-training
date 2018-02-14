@@ -6,8 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Lista de Usuários</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Lista de Usuários</title>
+	<spring:url var="css" value="/static/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="${css}">
 </head>
 <body>
 	<div class="container">
@@ -19,7 +21,7 @@
 		</div>
 		<hr>
 
-		<div class="panel-default">
+		<div class="${message == null ? 'panel-default' : 'panel-success'}">
 
 			<div class="panel-heading">
 				<span>${message == null ? '&nbsp;' : message}</span>
@@ -40,10 +42,9 @@
 						<tr>
 							<td>${user.id }</td>
 							<td>${user.name }&nbsp;${user.surname }</td>
-							<td>
-								<f:parseDate var="date" value="${user.birthday}" pattern="yyyy-MM-dd" type="date" />
-								<f:formatDate value="${date}" pattern="dd/MM/yyyy" type="date" />
-							</td>
+							<td><f:parseDate var="date" value="${user.birthday}"
+									pattern="yyyy-MM-dd" type="date" /> <f:formatDate
+									value="${date}" pattern="dd/MM/yyyy" type="date" /></td>
 							<td>${user.gender.description }</td>
 							<td><spring:url value="/user/edit/${user.id }" var="edit" />
 								<a class="btn btn-info" href="${edit }">Editar</a> <spring:url
