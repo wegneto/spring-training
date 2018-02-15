@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wegneto.spring.mvc.domain.User;
 
@@ -39,10 +41,11 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "from User u";
+		TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
+		return query.getResultList();
 	}
 
 }
