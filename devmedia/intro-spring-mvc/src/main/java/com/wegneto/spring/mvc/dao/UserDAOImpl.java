@@ -12,15 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wegneto.spring.mvc.domain.User;
 
 @Repository
+@Transactional
 public class UserDAOImpl implements UserDAO {
 	
 	@PersistenceContext
 	private EntityManager entityManager; 
 
 	@Override
-	public void save(User usuario) {
-		// TODO Auto-generated method stub
-
+	public void save(User user) {
+		entityManager.persist(user);
 	}
 
 	@Override

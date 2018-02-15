@@ -53,7 +53,7 @@ public class UserController {
 	}
 
 	@GetMapping("/edit/{id}")
-	public ModelAndView edit(@PathVariable("id") UUID id, ModelMap model) {
+	public ModelAndView edit(@PathVariable("id") Long id, ModelMap model) {
 		User usuario = dao.findById(id);
 		model.addAttribute("user", usuario);
 		return new ModelAndView("/user/add", model);
@@ -71,7 +71,7 @@ public class UserController {
 	}
 
 	@GetMapping("/remove/{id}")
-	public String remove(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
+	public String remove(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 		dao.delete(id);
 		redirectAttributes.addFlashAttribute("message", "Usuário excluido com sucesso.");
 		return "redirect:/user/";

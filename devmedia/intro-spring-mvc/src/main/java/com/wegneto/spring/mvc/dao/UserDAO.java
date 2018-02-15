@@ -6,9 +6,9 @@ import com.wegneto.spring.mvc.domain.User;
 
 public interface UserDAO {
 
-	void save(User usuario);
+	void save(User user);
 
-	void update(User usuario);
+	void update(User user);
 
 	void delete(Long id);
 
