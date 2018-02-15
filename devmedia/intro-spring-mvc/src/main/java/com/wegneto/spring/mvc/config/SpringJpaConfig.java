@@ -1,5 +1,7 @@
 package com.wegneto.spring.mvc.config;
 
+import java.util.Properties;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -7,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -22,17 +27,32 @@ public class SpringJpaConfig {
 		ds.setPassword("root");
 		return ds;
 	}
-	
+
+	@Bean
 	public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
-		return null;
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setDataSource(dataSource);
+		factory.setPackagesToScan("com.wegneto.spring.mvc.domain");
+		factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+		factory.setJpaProperties(jpaProperties());
+		factory.afterPropertiesSet();
+		return factory.getObject();
 	}
-	
+
+	@Bean
 	public JpaTransactionManager transactionManager(EntityManagerFactory factory) {
-		return null;
+		JpaTransactionManager tx = new JpaTransactionManager();
+		tx.setEntityManagerFactory(factory);
+		tx.setJpaDialect(new HibernateJpaDialect());
+		return tx;
 	}
-	
+
 	public Properties jpaProperties() {
-		return null;
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.format_sql", "true");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		return properties;
 	}
-	
+
 }
