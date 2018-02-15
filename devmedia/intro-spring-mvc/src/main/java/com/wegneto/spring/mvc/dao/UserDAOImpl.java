@@ -14,9 +14,9 @@ import com.wegneto.spring.mvc.domain.User;
 @Repository
 @Transactional
 public class UserDAOImpl implements UserDAO {
-	
+
 	@PersistenceContext
-	private EntityManager entityManager; 
+	private EntityManager entityManager;
 
 	@Override
 	public void save(User user) {
@@ -35,10 +35,12 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public User findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "from User u where u.id = :id";
+		TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
+		query.setParameter("id", id);
+		return query.getSingleResult();
 	}
 
 	@Transactional(readOnly = true)
