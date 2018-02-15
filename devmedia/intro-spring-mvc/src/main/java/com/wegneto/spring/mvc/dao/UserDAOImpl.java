@@ -1,60 +1,48 @@
 package com.wegneto.spring.mvc.dao;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.github.javafaker.Faker;
 import com.wegneto.spring.mvc.domain.User;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-
-	private Faker faker = new Faker();
-
-	private static List<User> userList;
-
-	public UserDAOImpl() {
-		createUserList();
-	}
-
-	private void createUserList() {
-		if (userList == null) {
-			userList = new LinkedList<>();
-		}
-	}
+	
+	@PersistenceContext
+	private EntityManager entityManager; 
 
 	@Override
 	public void save(User usuario) {
-		userList.add(usuario);
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public void update(User user) {
-		userList.stream().filter(u -> u.getId().equals(user.getId())).forEach(u -> {
-			u.setName(user.getName());
-			u.setSurname(user.getSurname());
-			u.setBirthday(user.getBirthday());
-			u.setGender(user.getGender());
-		});
+	public void update(User usuario) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public void delete(UUID id) {
-		userList.removeIf(u -> u.getId().equals(id));
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public User findById(UUID id) {
-		return userList.stream().filter(u -> u.getId().equals(id)).collect(Collectors.toList()).get(0);
+	public User findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<User> findAll() {
-		return userList;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
