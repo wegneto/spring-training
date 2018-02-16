@@ -24,15 +24,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void update(User usuario) {
-		// TODO Auto-generated method stub
-
+	public void update(User user) {
+		entityManager.merge(user);
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-
+		entityManager.remove(entityManager.getReference(User.class, id));
 	}
 
 	@Transactional(readOnly = true)
