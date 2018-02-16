@@ -2,6 +2,7 @@ package com.wegneto.spring.mvc.web.controller;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -86,6 +87,14 @@ public class UserController {
 			return new ModelAndView("redirect:/user/");
 		}
 		return new ModelAndView("/user/list", "users", dao.findByGender(gender));
+	}
+	
+	@GetMapping("/name")
+	public ModelAndView listByName(@RequestParam(value = "name") String name) {
+		if (StringUtils.isEmpty(name)) {
+			return new ModelAndView("redirect:/user/");
+		}
+		return new ModelAndView("/user/list", "users", dao.findByName(name));
 	}
 
 }
