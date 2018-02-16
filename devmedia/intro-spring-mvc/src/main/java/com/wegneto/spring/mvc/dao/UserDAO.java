@@ -2,6 +2,7 @@ package com.wegneto.spring.mvc.dao;
 
 import java.util.List;
 
+import com.wegneto.spring.mvc.domain.Gender;
 import com.wegneto.spring.mvc.domain.User;
 
 public interface UserDAO {
@@ -15,5 +16,7 @@ public interface UserDAO {
 	User findById(Long id);
 
 	List<User> findAll();
+	
+	List<User> findByGender(Gender gender);
 
 }

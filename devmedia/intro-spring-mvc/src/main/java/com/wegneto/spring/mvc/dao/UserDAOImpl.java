@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wegneto.spring.mvc.domain.Gender;
 import com.wegneto.spring.mvc.domain.User;
 
 @Repository
@@ -45,6 +46,14 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> findAll() {
 		String jpql = "from User u";
 		TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
+		return query.getResultList();
+	}
+
+	@Transactional(readOnly = true)
+	public List<User> findByGender(Gender gender) {
+		String jpql = "from User u where u.gender = :gender";
+		TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
+		query.setParameter("gender", gender);
 		return query.getResultList();
 	}
 
