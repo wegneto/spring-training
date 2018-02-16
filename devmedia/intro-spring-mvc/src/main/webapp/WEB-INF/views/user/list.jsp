@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Lista de Usuários</title>
-	<spring:url var="css" value="/static/css/bootstrap.css" />
-	<link type="text/css" rel="stylesheet" href="${css}">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Lista de Usuários</title>
+<spring:url var="css" value="/static/css/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="${css}">
 </head>
 <body>
 	<div class="container">
@@ -21,12 +21,44 @@
 		</div>
 		<hr>
 
-		<div class="${message == null ? 'panel-default' : 'panel-success'}">
+		<div>
+			<div>
+				<spring:url var="act_gender" value="/user/gender" />
+				<form action="${act_gender}" method="get">
+					<div class="form-group">
+						<label for="gender">Busca por Genero</label> 
+						<select name="gender" class="form-control">
+							<c:forEach var="gender" items="${genders}">
+								<option value="${gender.description}">${gender.description}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default">Localizar</button>
+					</div>
+				</form>
+			</div>
+			<!--  
+			<div>
+				<spring:url var="act_nome" value="/usuario/nome" />
+				<form action="${act_nome}" method="get">
+					<div class="form-group">
+						<label for="nome">Busca por Nome ou Sobrenome</label> <input
+							name="nome" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default">Localizar</button>
+					</div>
+				</form>
+			</div>
+			-->
+		</div>
+		<hr>
 
+		<div class="${message == null ? 'panel-default' : 'panel-success'}">
 			<div class="panel-heading">
 				<span>${message == null ? '&nbsp;' : message}</span>
 			</div>
-
 			<table class="table table-striped table-condensed">
 				<thead>
 					<tr>

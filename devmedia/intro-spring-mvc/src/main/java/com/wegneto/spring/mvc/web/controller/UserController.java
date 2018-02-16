@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,7 +35,6 @@ public class UserController {
 
 	@GetMapping("/create")
 	public String create(@ModelAttribute("user") User user, ModelMap model) {
-		model.addAttribute("genders", Gender.values());
 		return "/user/add";
 	}
 
@@ -73,6 +73,19 @@ public class UserController {
 		dao.delete(id);
 		redirectAttributes.addFlashAttribute("message", "Usuário excluido com sucesso.");
 		return "redirect:/user/";
+	}
+	
+	@ModelAttribute("genders")
+	public Gender[] genders() {
+		return Gender.values();
+	}
+	
+	@GetMapping("/gender")
+	public ModelAndView listByGender(@RequestParam(value = "gender") Gender gender) {
+		if (gender == null) {
+			return new ModelAndView("redirect:/user/");
+		}
+		return new ModelAndView("/user/list", "users", dao.findByGender(gender));
 	}
 
 }
