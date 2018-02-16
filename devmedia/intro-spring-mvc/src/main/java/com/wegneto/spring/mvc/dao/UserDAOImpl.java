@@ -57,4 +57,13 @@ public class UserDAOImpl implements UserDAO {
 		return query.getResultList();
 	}
 
+	@Transactional(readOnly = true)
+	public List<User> findByName(String name) {
+		String jpql = "from User u where u.name like :name or u.surname like :surname";
+		TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
+		query.setParameter("name", "%"+name+"%");
+		query.setParameter("surname", "%"+name+"%");
+		return query.getResultList();
+	}
+
 }

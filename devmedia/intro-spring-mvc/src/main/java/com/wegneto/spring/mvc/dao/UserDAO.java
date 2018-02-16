@@ -18,5 +18,7 @@ public interface UserDAO {
 	List<User> findAll();
 	
 	List<User> findByGender(Gender gender);
+	
+	List<User> findByName(String name);
 
 }
