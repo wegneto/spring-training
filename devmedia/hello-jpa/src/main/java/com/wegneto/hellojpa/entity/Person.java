@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "persons", indexes = {
-		@Index(columnList = "first_name, last_name", name = "idx_person_name", unique = true) })
+		@Index(columnList = "firstName, lastName", name = "idx_person_name", unique = true) })
 public class Person implements Serializable {
 
 	@Id
