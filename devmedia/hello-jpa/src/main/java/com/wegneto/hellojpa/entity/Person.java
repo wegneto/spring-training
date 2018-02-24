@@ -12,17 +12,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "persons", indexes = {
-		@Index(columnList = "firstName, lastName", name = "idx_person_name", unique = true) })
+		@Index(columnList = "first_name, last_name", name = "idx_person_name", unique = true) })
 public class Person implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, length = 30)
+	@Column(name="first_name", nullable = false, length = 30)
 	private String firstName;
 
-	@Column(nullable = false, length = 60)
+	@Column(name="last_name", nullable = false, length = 60)
 	private String lastName;
 
 	@Column(nullable = false)
