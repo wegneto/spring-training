@@ -2,12 +2,15 @@ package com.wegneto.hellojpa.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,14 +22,18 @@ public class Person implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="first_name", nullable = false, length = 30)
+	@Column(name = "first_name", nullable = false, length = 30)
 	private String firstName;
 
-	@Column(name="last_name", nullable = false, length = 60)
+	@Column(name = "last_name", nullable = false, length = 60)
 	private String lastName;
 
 	@Column(nullable = false)
 	private Integer age;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "document_id")
+	private Document document;
 
 	public Long getId() {
 		return id;
@@ -60,6 +67,14 @@ public class Person implements Serializable {
 		this.age = age;
 	}
 
+	public Document getDocument() {
+		return document;
+	}
+
+	public void setDocument(Document document) {
+		this.document = document;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -87,7 +102,8 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + "]";
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
+				+ ", document=" + document + "]";
 	}
 
 }
