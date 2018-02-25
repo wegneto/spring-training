@@ -20,12 +20,13 @@ public abstract class GenericDAO<T extends Serializable> {
 		return JPAUtil.getInstance().getEntityManager();
 	}
 
-	public void save(T entity) {
+	public T save(T entity) {
 		EntityManager manager = getEntityManager();
 		manager.getTransaction().begin();
 		manager.persist(entity);
 		manager.getTransaction().commit();
 		manager.close();
+		return entity;
 	}
 
 	public void update(T entity) {
