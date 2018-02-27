@@ -1,17 +1,18 @@
 package com.wegneto.hellojpa.dao;
 
+import static com.wegneto.hellojpa.TestUtils.createPerson;
+import static com.wegneto.hellojpa.TestUtils.generateDocumentNumber;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.javafaker.Faker;
+import com.wegneto.hellojpa.entity.Document;
 import com.wegneto.hellojpa.entity.Person;
 
 public class PersonDAOTest {
-
-	private Faker faker = new Faker();
 
 	private PersonDAO personDAO = new PersonDAO();
 
@@ -36,13 +37,17 @@ public class PersonDAOTest {
 		assertNotNull(p1.getId());
 		assertEquals(p1, result);
 	}
+	
+	@Test
+	public void findByCpf() {
+		Person person = createPerson();
+		person.setDocument(new Document(generateDocumentNumber("xxx.xxx.xxx-xx"), generateDocumentNumber("xxxxxxxx-xx")));
+		person = personDAO.save(person);
 
-	private Person createPerson() {
-		Person p1 = new Person();
-		p1.setFirstName(faker.name().firstName());
-		p1.setLastName(faker.name().lastName());
-		p1.setAge(faker.number().numberBetween(10, 50));
-		return p1;
+		Person dbRecord = personDAO.findByCpf(person.getDocument().getCpf());
+		
+		Assert.assertEquals(person, dbRecord);
+		
 	}
 
 }

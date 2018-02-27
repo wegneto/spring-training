@@ -19,4 +19,9 @@ public class PersonDAO extends GenericDAO<Person> {
 		String jpql = "from Person p where p.age between ?1 and ?2";
 		return find(jpql, min, max);
 	}
+	
+	public Person findByCpf(String cpf) {
+		String jpql = "select p from Person p where p.document.cpf = ?1";
+		return findOne(jpql, cpf);
+	}
 }
