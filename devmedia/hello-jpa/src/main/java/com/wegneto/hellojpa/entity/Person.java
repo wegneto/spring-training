@@ -94,6 +94,7 @@ public class Person implements Serializable {
 		if (phones == null) {
 			phones = new ArrayList<Phone>();
 		}
+		phone.setPerson(this);
 		phones.add(phone);
 	}
 

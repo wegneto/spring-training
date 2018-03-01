@@ -12,12 +12,15 @@ import java.util.Collections;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.github.javafaker.Faker;
 import com.wegneto.hellojpa.entity.Document;
 import com.wegneto.hellojpa.entity.Person;
 import com.wegneto.hellojpa.entity.Phone;
 import com.wegneto.hellojpa.entity.Phone.TypePhone;
 
 public class PersonDAOTest {
+	
+	private Faker faker = new Faker();
 
 	private PersonDAO personDAO = new PersonDAO();
 
@@ -61,14 +64,21 @@ public class PersonDAOTest {
 		person.setDocument(
 				new Document(generateDocumentNumber("xxx.xxx.xxx-xx"), generateDocumentNumber("xxxxxxxx-xx")));
 
-		Phone phone = new Phone(TypePhone.HOME, "555-5555");
-		phone.setPerson(person);
-
-		person.addPhone(phone);
+		Phone phone1 = new Phone(TypePhone.HOME, faker.phoneNumber().phoneNumber());
+		person.addPhone(phone1);
+		
+		Phone phone2 = new Phone(TypePhone.MOBILE, faker.phoneNumber().cellPhone());
+		person.addPhone(phone2);
+		
+		Phone phone3 = new Phone(TypePhone.WORK, faker.phoneNumber().phoneNumber());
+		person.addPhone(phone3);
+		
 		personDAO.save(person);
 
 		assertNotNull(person.getId());
-		assertNotNull(phone.getId());
+		assertNotNull(phone1.getId());
+		assertNotNull(phone2.getId());
+		assertNotNull(phone3.getId());
 	}
 
 }
