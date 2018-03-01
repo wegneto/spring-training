@@ -41,12 +41,10 @@ public class Phone implements Serializable {
 		super();
 	}
 
-	public Phone(Long id, TypePhone typePhone, String number, Person person) {
+	public Phone(TypePhone typePhone, String number) {
 		super();
-		this.id = id;
 		this.typePhone = typePhone;
 		this.number = number;
-		this.person = person;
 	}
 
 	public Long getId() {
