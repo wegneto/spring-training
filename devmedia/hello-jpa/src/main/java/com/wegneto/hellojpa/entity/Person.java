@@ -97,6 +97,12 @@ public class Person implements Serializable {
 		phone.setPerson(this);
 		phones.add(phone);
 	}
+	
+	public void removePhone(Phone phone) {
+		if (phones != null) {
+			phones.remove(phone);
+		}
+	}
 
 	@Override
 	public int hashCode() {

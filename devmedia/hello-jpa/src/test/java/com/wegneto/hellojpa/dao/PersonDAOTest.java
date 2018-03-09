@@ -24,7 +24,7 @@ public class PersonDAOTest {
 
 	private PersonDAO personDAO = new PersonDAO();
 
-	@Test
+	//@Test
 	public void successfullyInsert() {
 		long count = personDAO.count();
 
@@ -36,7 +36,7 @@ public class PersonDAOTest {
 		assertEquals(count + 1, personDAO.count());
 	}
 
-	@Test
+	//@Test
 	public void successfullyFindById() {
 		Person p1 = createPerson();
 		p1 = personDAO.save(p1);
@@ -46,7 +46,7 @@ public class PersonDAOTest {
 		assertEquals(p1, result);
 	}
 
-	@Test
+	//@Test
 	public void findByCpf() {
 		Person person = createPerson();
 		person.setDocument(
@@ -58,7 +58,7 @@ public class PersonDAOTest {
 		Assert.assertEquals(person, dbRecord);
 	}
 
-	@Test
+	//@Test
 	public void insertPhoneNumber() {
 		Person person = createPerson();
 		person.setDocument(
@@ -79,6 +79,32 @@ public class PersonDAOTest {
 		assertNotNull(phone1.getId());
 		assertNotNull(phone2.getId());
 		assertNotNull(phone3.getId());
+	}
+	
+	@Test
+	public void updatePhoneByPerson() {
+		Person person = createPerson();
+		person.setDocument(new Document(generateDocumentNumber("xxx.xxx.xxx-xx"), generateDocumentNumber("xxxxxxxx-xx")));
+
+		Phone phone1 = new Phone(TypePhone.HOME, faker.phoneNumber().phoneNumber());
+		person.addPhone(phone1);
+		
+		Phone phone2 = new Phone(TypePhone.MOBILE, faker.phoneNumber().cellPhone());
+		person.addPhone(phone2);
+		
+		Phone phone3 = new Phone(TypePhone.WORK, faker.phoneNumber().phoneNumber());
+		person.addPhone(phone3);
+		
+		personDAO.save(person);
+		
+		Person p2 = personDAO.findById(person.getId());
+		for (Phone phone : p2.getPhones()) {
+			if (TypePhone.HOME == phone.getTypePhone()) {
+				phone.setTypePhone(TypePhone.MOBILE);
+			}
+		}
+		
+		personDAO.update(p2);
 	}
 
 }
