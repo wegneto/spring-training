@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,6 +43,13 @@ public class Person implements Serializable {
 	
 	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Phone> phones;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "person_address",
+			joinColumns = @JoinColumn(name = "id_person"),
+			inverseJoinColumns = @JoinColumn(name = "id_address"))
+	private List<Address> addresses;
 
 	public Long getId() {
 		return id;
@@ -102,6 +111,14 @@ public class Person implements Serializable {
 		if (phones != null) {
 			phones.remove(phone);
 		}
+	}
+	
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 	@Override
