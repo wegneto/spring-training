@@ -41,10 +41,10 @@ public class Person implements Serializable {
 	@JoinColumn(name = "document_id")
 	private Document document;
 	
-	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Phone> phones;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "person_address",
 			joinColumns = @JoinColumn(name = "id_person"),
