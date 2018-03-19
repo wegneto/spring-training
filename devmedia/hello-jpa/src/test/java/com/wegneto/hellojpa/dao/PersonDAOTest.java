@@ -21,7 +21,7 @@ public class PersonDAOTest {
 
 	private PersonDAO personDAO = new PersonDAO();
 
-	//@Test
+	@Test
 	public void successfullyInsert() {
 		long count = personDAO.count();
 
@@ -33,7 +33,7 @@ public class PersonDAOTest {
 		assertEquals(count + 1, personDAO.count());
 	}
 
-	//@Test
+	@Test
 	public void successfullyFindById() {
 		Person p1 = createPerson();
 		p1 = personDAO.save(p1);
@@ -43,7 +43,7 @@ public class PersonDAOTest {
 		assertEquals(p1, result);
 	}
 
-	//@Test
+	@Test
 	public void findByCpf() {
 		Person person = createPerson();
 		person.setDocument(
@@ -55,7 +55,7 @@ public class PersonDAOTest {
 		Assert.assertEquals(person, dbRecord);
 	}
 
-	//@Test
+	@Test
 	public void insertPhoneNumber() {
 		Person person = createPerson();
 		person.setDocument(
