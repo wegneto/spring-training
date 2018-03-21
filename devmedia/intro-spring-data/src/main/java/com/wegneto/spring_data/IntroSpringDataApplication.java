@@ -12,7 +12,7 @@ import com.wegneto.spring_data.entity.Person;
 import com.wegneto.spring_data.repository.PersonRepository;
 
 @SpringBootApplication
-@ImportResource(value = "spring-data.xml")
+//@ImportResource(value = "spring-data.xml")
 public class IntroSpringDataApplication implements CommandLineRunner {
 	
 	@Autowired
