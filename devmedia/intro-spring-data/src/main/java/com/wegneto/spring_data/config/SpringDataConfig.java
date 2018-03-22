@@ -46,13 +46,18 @@ public class SpringDataConfig {
 	}
 	
 	@Bean
-	public EntityManagerFactory entityManagerFactory() {
+	public HibernateJpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setShowSql(true);
 		adapter.setGenerateDdl(true);
 		
+		return adapter;
+	}
+	
+	@Bean
+	public EntityManagerFactory entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setJpaVendorAdapter(adapter);
+		factory.setJpaVendorAdapter(jpaVendorAdapter());
 		factory.setPackagesToScan("com.wegneto.spring_data.entity");
 		factory.setDataSource(dataSource());
 		factory.afterPropertiesSet();
