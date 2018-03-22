@@ -1,5 +1,7 @@
 package com.wegneto.spring_data.config;
 
+import java.util.Properties;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -33,7 +35,7 @@ public class SpringDataConfig {
 
 	@Value(value = "${jdbc.url}")
 	private String url;
-	
+
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -41,36 +43,35 @@ public class SpringDataConfig {
 		dataSource.setPassword(password);
 		dataSource.setDriverClassName(driver);
 		dataSource.setUrl(url);
-		
+
 		return dataSource;
 	}
-	
+
 	@Bean
-	public HibernateJpaVendorAdapter jpaVendorAdapter() {
+	public EntityManagerFactory entityManagerFactory() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setShowSql(true);
 		adapter.setGenerateDdl(true);
 		
-		return adapter;
-	}
-	
-	@Bean
-	public EntityManagerFactory entityManagerFactory() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setJpaVendorAdapter(jpaVendorAdapter());
+		factory.setJpaVendorAdapter(adapter);
+		factory.setJpaProperties(properties);
 		factory.setPackagesToScan("com.wegneto.spring_data.entity");
 		factory.setDataSource(dataSource());
 		factory.afterPropertiesSet();
-		
+
 		return factory.getObject();
 	}
-	
+
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
 		JpaTransactionManager manager = new JpaTransactionManager();
 		manager.setEntityManagerFactory(factory);
 		manager.setJpaDialect(new HibernateJpaDialect());
-		
 		return manager;
 	}
 
