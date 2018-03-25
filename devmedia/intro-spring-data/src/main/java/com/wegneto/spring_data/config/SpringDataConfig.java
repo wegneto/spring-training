@@ -59,7 +59,7 @@ public class SpringDataConfig {
 		
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(adapter);
-		factory.setJpaProperties(properties);
+		//factory.setJpaProperties(properties);
 		factory.setPackagesToScan("com.wegneto.spring_data.entity");
 		factory.setDataSource(dataSource());
 		factory.afterPropertiesSet();
