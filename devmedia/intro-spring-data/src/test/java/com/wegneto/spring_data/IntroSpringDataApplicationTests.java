@@ -1,5 +1,6 @@
 package com.wegneto.spring_data;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -74,6 +78,22 @@ public class IntroSpringDataApplicationTests {
 		personRepository.delete(result);
 		
 		Assert.assertEquals(0, personRepository.count());
+	}
+	
+	@Test
+	public void testFindAndSort() {
+		Order orderAsc = new Order(Direction.ASC, "lastName");
+		Sort sort = new Sort(orderAsc);
+		
+		List<Person> insertList = new ArrayList<>();
+		for(int i = 0; i < 10; i++) {
+			insertList.add(TestUtils.createPerson());
+		}
+		personRepository.save(insertList);
+		
+		List<Person> persons = personRepository.findAll(sort);
+		System.out.println("==== Ordered list =====");
+		persons.forEach(System.out::println);
 	}
 	
 }
