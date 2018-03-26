@@ -120,6 +120,13 @@ public class Person implements Serializable {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
+	
+	public void addAddress(Address address) {
+		if (addresses == null) {
+			addresses = new ArrayList<Address>();
+		}
+		addresses.add(address);
+	}
 
 	@Override
 	public int hashCode() {
