@@ -96,4 +96,31 @@ public class IntroSpringDataApplicationTests {
 		persons.forEach(System.out::println);
 	}
 	
+	@Test
+	public void testFindByAge() {
+		Person p1 = TestUtils.createPerson();
+		int age1 = 21;
+		p1.setAge(age1);
+		p1.setDocument(TestUtils.createDocument());
+		
+		Person p2 = TestUtils.createPerson();
+		int age2 = 22;
+		p2.setAge(age2);
+		p2.setDocument(TestUtils.createDocument());
+		
+		Person p3 = TestUtils.createPerson();
+		int age3 = 23;
+		p3.setAge(age3);
+		p3.setDocument(TestUtils.createDocument());
+		
+		personRepository.save(Arrays.asList(p1, p2, p3));
+		
+		long count = personRepository.count();
+		List<Person> result = personRepository.findByAge(age1);
+		
+		Assert.assertEquals(3, count);
+		Assert.assertEquals(1, result.size());
+		
+	}
+	
 }
