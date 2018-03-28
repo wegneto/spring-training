@@ -12,4 +12,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	
 	List<Person> findByAgeNot(Integer age);
 	
+	List<Person> findByFirstNameLike(String firstName);
+	
+	List<Person> findByFirstNameNotLike(String firstName);
+	
 }
