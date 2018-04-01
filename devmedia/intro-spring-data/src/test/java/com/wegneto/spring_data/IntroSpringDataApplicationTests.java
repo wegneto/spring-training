@@ -119,8 +119,7 @@ public class IntroSpringDataApplicationTests {
 		List<Person> result = personRepository.findByAge(age1);
 		
 		Assert.assertEquals(3, count);
-		Assert.assertEquals(1, result.size());
-		
+		Assert.assertEquals(1, result.size());	
 	}
 	
 }
