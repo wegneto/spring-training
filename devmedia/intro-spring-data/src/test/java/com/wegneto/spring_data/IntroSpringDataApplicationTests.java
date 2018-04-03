@@ -122,4 +122,14 @@ public class IntroSpringDataApplicationTests {
 		Assert.assertEquals(1, result.size());	
 	}
 	
+	@Test
+	public void findByFirstNameAndLastName() {
+		Person p1 = TestUtils.createPerson();
+		Person savedPerson = personRepository.save(p1);
+		
+		Person result = personRepository.findByFirstNameAndLastName(p1.getFirstName(), p1.getLastName());
+	
+		Assert.assertEquals(savedPerson.getId(), result.getId());
+	}
+	
 }
