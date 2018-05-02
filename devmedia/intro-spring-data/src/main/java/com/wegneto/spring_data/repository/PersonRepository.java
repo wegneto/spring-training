@@ -22,4 +22,14 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	
 	List<Person> findByAgeBetween(Integer min, Integer max);
 	
+	List<Person> findByAgeGreaterThan(Integer age);
+	
+	List<Person> findByAgeLessThan(Integer age);
+	
+	List<Person> findByAgeGreaterThanEqual(Integer age);
+	
+	List<Person> findByAgeLessThanEqual(Integer age);
+	
+	List<Person> findByFirstNameGreaterThan(String firstName);
+	
 }
