@@ -32,4 +32,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	
 	List<Person> findByFirstNameGreaterThan(String firstName);
 	
+	List<Person> findByAgeIn(Integer... ages);
+	
+	List<Person> findByAgeNotIn(Integer... ages);
+	
 }
