@@ -1,0 +1,21 @@
+INSERT INTO documents (id, cpf, rg) VALUES (1, '031.104.273-38', '67665502-82');
+INSERT INTO documents (id, cpf, rg) VALUES (2, '700.483.950-16', '81882588-78');
+INSERT INTO documents (id, cpf, rg) VALUES (3, '744.680.375-65', '56183675-35');
+INSERT INTO documents (id, cpf, rg) VALUES (4, '541.655.556-39', '40255747-61');
+INSERT INTO documents (id, cpf, rg) VALUES (5, '791.331.831-78', '52298067-62');
+INSERT INTO documents (id, cpf, rg) VALUES (6, '406.079.463-75', '85154836-71');
+INSERT INTO documents (id, cpf, rg) VALUES (7, '532.167.318-01', '11964444-86');
+INSERT INTO documents (id, cpf, rg) VALUES (8, '289.676.651-83', '24460936-62');
+INSERT INTO documents (id, cpf, rg) VALUES (9, '523.646.477-08', '83226768-40');
+INSERT INTO documents (id, cpf, rg) VALUES (10, '126.288.417-52', '87451903-35');
+
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (1, 44, 'Sally', 'Rice', 1);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (2, 40, 'Mossie', 'Greenholt', 2);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (3, 22, 'Chaim', 'Runte', 3);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (4, 44, 'Garrett', 'Kris', 4);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (5, 21, 'Sage', 'Green', 5);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (6, 43, 'Rita', 'Wiza', 6);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (7, 22, 'Ona', 'Glover', 7);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (8, 37, 'Frederick', 'Senger', 8);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (9, 16, 'Abby', 'Wilkinson', 9);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (10, 31, 'Winfield', 'Auer', 10);

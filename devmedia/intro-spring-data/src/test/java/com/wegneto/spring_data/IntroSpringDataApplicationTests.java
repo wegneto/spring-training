@@ -20,7 +20,7 @@ import com.wegneto.spring_data.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Sql(scripts = {"/test.sql"})
+@Sql(scripts = {"/clear_db.sql"})
 public class IntroSpringDataApplicationTests {
 	
 	@Autowired
