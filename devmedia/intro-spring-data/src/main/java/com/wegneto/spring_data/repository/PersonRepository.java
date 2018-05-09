@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.wegneto.spring_data.entity.Person;
 
@@ -20,8 +21,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	Person findByFirstNameAndLastName(String firstName, String lastName);
 	
 	List<Person> findByFirstNameOrLastName(Integer age, String firstName);
-	
-	List<Person> findByAgeBetween(Integer min, Integer max);
 	
 	List<Person> findByAgeGreaterThan(Integer age);
 	
@@ -44,5 +43,11 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	
 	@Query("select p from Person p where p.document.cpf like %?1")
 	List<Person> findByDocumentCPFEndsWith(String value);
+	
+	@Query("select p from Person p where p.age >= :min and p.age <= :max ")
+	List<Person> findByAgeBetween(@Param("min") Integer start, @Param("max") Integer end);
+	
+	@Query("select p from Person p where p.firstName in (:firstNames) ")
+	List<Person> findByFirstNames(@Param("firstNames") String...firstNames);
 	
 }
