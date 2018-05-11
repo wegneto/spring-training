@@ -14,10 +14,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "address")
+@NamedQuery(name = "Address.findByCity", query = "select a from Address a where a.city like ?1")
+@NamedNativeQueries(
+		@NamedNativeQuery(
+				name = "Address.findByCityAndStreet", 
+				query = "select * from address where city like ?1 and street like ?2", 
+				resultClass = Address.class))
 public class Address implements Serializable {
 
 	public enum TypeAddress {
@@ -39,10 +48,7 @@ public class Address implements Serializable {
 	private TypeAddress typeAddress;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-			name = "person_address",
-			joinColumns = @JoinColumn(name = "id_address"),
-			inverseJoinColumns = @JoinColumn(name = "id_person"))
+	@JoinTable(name = "person_address", joinColumns = @JoinColumn(name = "id_address"), inverseJoinColumns = @JoinColumn(name = "id_person"))
 	private List<Person> persons;
 
 	public Long getId() {
