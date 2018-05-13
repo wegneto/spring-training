@@ -22,11 +22,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "address")
 @NamedQuery(name = "Address.findByCity", query = "select a from Address a where a.city like ?1")
-@NamedNativeQueries(
+@NamedNativeQueries({
 		@NamedNativeQuery(
 				name = "Address.findByCityAndStreet", 
 				query = "select * from address where city like ?1 and street like ?2", 
-				resultClass = Address.class))
+				resultClass = Address.class),
+		@NamedNativeQuery(
+				name = "Address.concatAddress", 
+				query = "select funcConcatAddress(?1)")
+})
 public class Address implements Serializable {
 
 	public enum TypeAddress {

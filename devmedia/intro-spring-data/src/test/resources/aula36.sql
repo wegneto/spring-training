@@ -1,0 +1,10 @@
+INSERT INTO address (id, city, street, type_address) VALUES (1, 'West Kodyland', '78426 Nikolas Pike', 'HOME');
+INSERT INTO address (id, city, street, type_address) VALUES (2, 'North Stephaniemouth', '71343 Carolyne Ford', 'WORK');
+INSERT INTO address (id, city, street, type_address) VALUES (3, 'South Meghanview', '36380 Jast Springs', 'HOME');
+INSERT INTO address (id, city, street, type_address) VALUES (4, 'Lake Gianni', '17240 Ariel Row', 'HOME');
+INSERT INTO address (id, city, street, type_address) VALUES (5, 'Ladariusshire', '596 Strosin Estate', 'WORK');
+INSERT INTO address (id, city, street, type_address) VALUES (6, 'Sebastianfort', '5067 Leanna Freeway', 'WORK');
+INSERT INTO address (id, city, street, type_address) VALUES (7, 'Port Alisa', '0629 Howard Vista', 'HOME');
+INSERT INTO address (id, city, street, type_address) VALUES (8, 'New Elza', '2300 Deshaun Manor', 'WORK');
+INSERT INTO address (id, city, street, type_address) VALUES (9, 'South Minervamouth', '7488 Ahmed Courts', 'WORK');
+INSERT INTO address (id, city, street, type_address) VALUES (10, 'North Mortimer', '304 Adams Via', 'HOME');
