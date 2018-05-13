@@ -15,7 +15,7 @@ import com.wegneto.spring_data.repository.AddressRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Sql(scripts = { "/clear_db.sql", "/aula35.sql" })
+@Sql(scripts = { "/clear_db.sql", "/aula36.sql" })
 public class Aula35Test {
 
 	@Autowired
