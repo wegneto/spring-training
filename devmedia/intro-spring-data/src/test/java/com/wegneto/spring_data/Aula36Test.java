@@ -24,5 +24,12 @@ public class Aula36Test {
 		Assert.assertNotNull(address);
 		Assert.assertEquals("West Kodyland - 78426 Nikolas Pike", address);
 	}
+	
+	@Test
+	public void concatAddress2() {
+		String address = addressRepository.concatAddress2(2L);
+		Assert.assertNotNull(address);
+		Assert.assertEquals("North Stephaniemouth - 71343 Carolyne Ford", address);
+	}
 
 }
