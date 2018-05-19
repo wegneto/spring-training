@@ -1,0 +1,21 @@
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (1, 12, 'Yessenia', 'Schroeder', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (2, 12, 'Friedrich', 'Hintz', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (3, 37, 'Aisha', 'Kutch', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (4, 15, 'Kiara', 'Kautzer', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (5, 14, 'Ricky', 'Cummings', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (6, 11, 'Freda', 'Champlin', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (7, 28, 'Julia', 'Turner', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (8, 34, 'Colin', 'Pouros', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (9, 41, 'Amari', 'Macejkovic', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (10, 42, 'Kiera', 'Konopelski', null);
+
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (1, '1-820-357-4532 x419', 'MOBILE', 1);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (2, '316.090.8926 x420', 'WORK', 2);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (3, '(135) 507-6321', 'HOME', 3);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (4, '790-258-3970 x838', 'HOME', 4);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (5, '1-419-625-9184 x331', 'MOBILE', 5);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (6, '699-035-3682 x57773', 'MOBILE', 6);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (7, '(275) 226-7949', 'MOBILE', 7);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (8, '1-174-721-6931 x123', 'WORK', 8);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (9, '789.358.4978', 'WORK', 9);
+INSERT INTO phones (id, number, type_phone, person_id) VALUES (10, '(614) 039-3156 x793', 'HOME', 10);
