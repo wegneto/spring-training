@@ -1,0 +1,10 @@
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (1, 12, 'Yessenia', 'Schroeder', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (2, 12, 'Friedrich', 'Hintz', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (3, 37, 'Aisha', 'Kutch', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (4, 15, 'Kiara', 'Kautzer', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (5, 14, 'Ricky', 'Cummings', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (6, 11, 'Freda', 'Champlin', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (7, 28, 'Julia', 'Turner', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (8, 34, 'Colin', 'Pouros', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (9, 41, 'Amari', 'Macejkovic', null);
+INSERT INTO persons (id, age, first_name, last_name, document_id) VALUES (10, 42, 'Kiera', 'Konopelski', null);

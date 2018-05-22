@@ -50,4 +50,12 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	@Query("select p from Person p where p.firstName in (:firstNames) ")
 	List<Person> findByFirstNames(@Param("firstNames") String...firstNames);
 	
+	Person findFirstByOrderByLastNameDesc();
+	
+	Person findFirstByOrderByLastNameAsc();
+	
+	Person findTopByOrderByAgeAsc();
+	
+	Person findTopByOrderByAgeDesc();
+	
 }
