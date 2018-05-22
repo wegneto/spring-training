@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.github.javafaker.Faker;
 import com.wegneto.spring_data.entity.Person;
 import com.wegneto.spring_data.repository.PersonRepository;
 
@@ -19,8 +18,6 @@ public class Aula39Test {
 
 	@Autowired
 	private PersonRepository personRepository;
-	
-	private Faker faker = new Faker();
 	
 	@Test
 	public void findFirst() {
