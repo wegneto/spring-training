@@ -4,10 +4,10 @@ import java.util.Random;
 
 import com.github.javafaker.Faker;
 import com.wegneto.spring_data.entity.Address;
+import com.wegneto.spring_data.entity.Address.TypeAddress;
 import com.wegneto.spring_data.entity.Document;
 import com.wegneto.spring_data.entity.Person;
 import com.wegneto.spring_data.entity.Phone;
-import com.wegneto.spring_data.entity.Address.TypeAddress;
 import com.wegneto.spring_data.entity.Phone.TypePhone;
 
 public class TestUtils {
