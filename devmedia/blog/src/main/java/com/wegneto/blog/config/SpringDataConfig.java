@@ -24,9 +24,40 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("classpath:/application.properties")
 public class SpringDataConfig {
-	
+
 	@Autowired
 	private Environment environment;
+
+	@Bean
+	public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
+		JpaTransactionManager manager = new JpaTransactionManager();
+		manager.setEntityManagerFactory(factory);
+		manager.setJpaDialect(new HibernateJpaDialect());
+		return manager;
+	}
+
+	@Bean
+	public HibernateJpaVendorAdapter jpaVendorAdapter() {
+		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+		adapter.setShowSql(environment.getProperty("hibernate.show.sql", Boolean.class));
+		adapter.setGenerateDdl(environment.getProperty("hibernate.ddl", Boolean.class));
+		return adapter;
+	}
+
+	@Bean
+	public EntityManagerFactory entityManagerFactory() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(jpaVendorAdapter());
+		factory.setJpaProperties(properties);
+		factory.setPackagesToScan(environment.getProperty("hibernate.package.scan"));
+		factory.setDataSource(dataSource());
+		factory.afterPropertiesSet();
+		return factory.getObject();
+	}
 
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
@@ -37,34 +68,6 @@ public class SpringDataConfig {
 		dataSource.setUrl(environment.getProperty("jdbc.url"));
 
 		return dataSource;
-	}
-
-	@Bean
-	public EntityManagerFactory entityManagerFactory() {
-		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		adapter.setShowSql(environment.getProperty("hibernate.show.sql", Boolean.class));
-		adapter.setGenerateDdl(environment.getProperty("hibernate.ddl", Boolean.class));
-
-		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-
-		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setJpaVendorAdapter(adapter);
-		// factory.setJpaProperties(properties);
-		factory.setPackagesToScan(environment.getProperty("hibernate.package.scan"));
-		factory.setDataSource(dataSource());
-		factory.afterPropertiesSet();
-
-		return factory.getObject();
-	}
-
-	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
-		JpaTransactionManager manager = new JpaTransactionManager();
-		manager.setEntityManagerFactory(factory);
-		manager.setJpaDialect(new HibernateJpaDialect());
-		return manager;
 	}
 
 }
