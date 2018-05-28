@@ -1,6 +1,9 @@
 package com.wegneto.blog.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
