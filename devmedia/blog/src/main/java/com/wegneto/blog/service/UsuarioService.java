@@ -1,8 +1,10 @@
 package com.wegneto.blog.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,22 @@ public class UsuarioService {
 	
 	public Usuario findById(Long id) {
 		return repository.findOne(id);
+	}
+	
+	@Transactional(readOnly = false)
+	public void delete(Long id) {
+		repository.delete(id);
+	}
+	
+	@Transactional(readOnly = false)
+	public void save(Usuario usuario) {
+		if (usuario.getDataCadastro() == null) {
+			usuario.setDataCadastro(LocalDate.now());
+		}
+		
+		String hash = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		
+		repository.save(usuario);
 	}
 
 }
