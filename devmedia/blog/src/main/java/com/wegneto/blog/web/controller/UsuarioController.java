@@ -35,7 +35,7 @@ public class UsuarioController {
 		Avatar avatar = avatarService.getAvatarByUpload(file);
 		usuario.setAvatar(avatar);
 		usuarioService.save(usuario);
-		
+
 		return "redirect:/usuario/perfil/" + usuario.getId();
 	}
 
