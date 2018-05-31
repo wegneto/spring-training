@@ -50,16 +50,16 @@ public class UsuarioController {
 		ModelAndView view = new ModelAndView();
 		view.addObject("usuario", usuario);
 		view.setViewName("usuario/perfil");
-		
+
 		return view;
 	}
-	
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView listUsuarios(ModelMap model) {
 		List<Usuario> usuarios = usuarioService.findAll();
-		
+
 		model.addAttribute("usuarios", usuarios);
-		
+
 		return new ModelAndView("usuario/list", model);
 	}
 
