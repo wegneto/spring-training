@@ -1,8 +1,12 @@
 package com.wegneto.blog.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +41,26 @@ public class UsuarioController {
 		usuarioService.save(usuario);
 
 		return "redirect:/usuario/perfil/" + usuario.getId();
+	}
+
+	@RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
+	public ModelAndView perfil(@PathVariable("id") Long id) {
+		Usuario usuario = usuarioService.findById(id);
+
+		ModelAndView view = new ModelAndView();
+		view.addObject("usuario", usuario);
+		view.setViewName("usuario/perfil");
+		
+		return view;
+	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView listUsuarios(ModelMap model) {
+		List<Usuario> usuarios = usuarioService.findAll();
+		
+		model.addAttribute("usuarios", usuarios);
+		
+		return new ModelAndView("usuario/list", model);
 	}
 
 }
