@@ -39,7 +39,25 @@ fieldset.group .campo {
 <body>
 	<fieldset>
 		<legend>Perfil</legend>
-		<table class="table"></table>
+		<table class="table">
+			<tr>
+				<th>Nome do usuário</th>
+				<th>E-mail</th>
+				<th>Data de cadastro</th>
+				<th>Perfil</th>
+				<th>Ação</th>
+			</tr>
+			<tr>
+				<td>${usuario.nome}</td>
+				<td>${usuario.email}</td>
+				<td>${usuario.dataCadastro}</td>
+				<td>${usuario.perfil}</td>
+				<td>
+					<a href="#" title="Editar">&#9445</a>
+					<a href="#" title="Excluir">&#9447</a>
+				</td>
+			</tr>
+		</table>
 	</fieldset>
 </body>
 </html>
