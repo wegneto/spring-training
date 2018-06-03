@@ -49,11 +49,12 @@ public class SpringDataConfig {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-		
+
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(jpaVendorAdapter());
 		factory.setJpaProperties(properties);
-		factory.setPackagesToScan(environment.getProperty("hibernate.package.scan"));
+		factory.setPackagesToScan(environment.getProperty("hibernate.package.scan"),
+				environment.getProperty("java.time.jpa.converter"));
 		factory.setDataSource(dataSource());
 		factory.afterPropertiesSet();
 		return factory.getObject();
