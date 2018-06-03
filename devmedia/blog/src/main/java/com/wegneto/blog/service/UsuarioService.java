@@ -48,6 +48,7 @@ public class UsuarioService {
 		}
 		
 		String hash = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		usuario.setSenha(hash);
 		
 		repository.save(usuario);
 	}
