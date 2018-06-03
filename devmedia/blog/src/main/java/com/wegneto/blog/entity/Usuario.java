@@ -26,7 +26,7 @@ public class Usuario extends AbstractPersistable<Long> {
 	@Column(nullable = false)
 	private String senha;
 
-	@Column(nullable = false)
+	@Column(name = "data_cadastro", nullable = false)
 	private LocalDate dataCadastro;
 
 	@Enumerated(EnumType.STRING)
