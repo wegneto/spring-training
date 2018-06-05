@@ -2,6 +2,7 @@ package com.wegneto.blog.service;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,6 +15,8 @@ import com.wegneto.blog.repository.AvatarRepository;
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class AvatarService {
+	
+	private static final Logger LOGGER = Logger.getLogger(AvatarService.class);
 
 	@Autowired
 	private AvatarRepository avatarRepository;
@@ -32,7 +35,7 @@ public class AvatarService {
 				avatar.setTipo(file.getContentType());
 				avatar.setAvatar(file.getBytes());
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("Ocorreu um erro ao fazer o upload do arquivo: " + e.getMessage());
 			}
 		}
 
