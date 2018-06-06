@@ -60,7 +60,8 @@ public class UsuarioService {
 
 	@Transactional(readOnly = false)
 	public void updateSenha(Usuario usuario) {
-		repository.updateSenha(usuario.getSenha(), usuario.getId());
+		String hash = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		repository.updateSenha(hash, usuario.getId());
 	}
 
 }
