@@ -1,6 +1,7 @@
 package com.wegneto.blog.web.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class UsuarioController {
 
 	@Autowired
 	private AvatarService avatarService;
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Perfil.class, new PerfilEditorSupport());
@@ -70,6 +71,23 @@ public class UsuarioController {
 		model.addAttribute("usuarios", usuarios);
 
 		return new ModelAndView("usuario/list", model);
+	}
+
+	@RequestMapping(value = { "/update/{id}", "/update" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView update(@PathVariable("id") Optional<Long> id, @ModelAttribute("usuario") Usuario usuario) {
+		ModelAndView view = new ModelAndView();
+		
+		if (id.isPresent()) {
+			usuario = usuarioService.findById(id.get());
+			view.addObject("usuario", usuario);
+			view.setViewName("usuario/atualizar");
+			return view;
+		}
+		
+		usuarioService.updateNomeAndEmail(usuario);
+		view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
+		
+		return view;
 	}
 
 }
