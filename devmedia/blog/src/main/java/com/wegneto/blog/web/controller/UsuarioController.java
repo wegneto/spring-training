@@ -76,13 +76,30 @@ public class UsuarioController {
 	@RequestMapping(value = { "/update/{id}", "/update" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView update(@PathVariable("id") Optional<Long> id, @ModelAttribute("usuario") Usuario usuario) {
 		ModelAndView view = new ModelAndView();
-		
+
 		if (id.isPresent()) {
 			usuario = usuarioService.findById(id.get());
 			view.addObject("usuario", usuario);
 			view.setViewName("usuario/atualizar");
 		} else {
 			usuarioService.updateNomeAndEmail(usuario);
+			view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
+		}
+
+		return view;
+	}
+
+	@RequestMapping(value = { "/update/senha/{id}", "/update/senha" }, method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public ModelAndView updateSenha(@PathVariable("id") Optional<Long> id, @ModelAttribute("usuario") Usuario usuario) {
+		ModelAndView view = new ModelAndView();
+
+		if (id.isPresent()) {
+			usuario = usuarioService.findById(id.get());
+			view.addObject("usuario", usuario);
+			view.setViewName("usuario/atualizar");
+		} else {
+			usuarioService.updateSenha(usuario);
 			view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
 		}
 
