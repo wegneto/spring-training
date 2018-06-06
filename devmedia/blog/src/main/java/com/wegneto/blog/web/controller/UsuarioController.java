@@ -81,12 +81,11 @@ public class UsuarioController {
 			usuario = usuarioService.findById(id.get());
 			view.addObject("usuario", usuario);
 			view.setViewName("usuario/atualizar");
-			return view;
+		} else {
+			usuarioService.updateNomeAndEmail(usuario);
+			view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
 		}
-		
-		usuarioService.updateNomeAndEmail(usuario);
-		view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
-		
+
 		return view;
 	}
 
