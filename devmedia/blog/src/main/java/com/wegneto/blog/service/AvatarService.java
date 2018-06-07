@@ -42,4 +42,8 @@ public class AvatarService {
 		return avatar;
 	}
 
+	public Avatar findById(Long id) {
+		return avatarRepository.findOne(id);
+	}
+
 }
