@@ -9,6 +9,8 @@
 	href="<c:url value="/css/style.css" />">
 </head>
 <body>
+	<c:import url="../menu.jsp" />
+	<br>
 	<fieldset>
 		<legend>Editar dados de usuário</legend>
 		<c:url var="save" value="/usuario/update/senha" />

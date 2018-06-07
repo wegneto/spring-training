@@ -9,6 +9,8 @@
 </head>
 
 <body>
+	<c:import url="../menu.jsp" />
+	<br>
 	<fieldset>
 		<legend>Perfil</legend>
 		<table class="table">
