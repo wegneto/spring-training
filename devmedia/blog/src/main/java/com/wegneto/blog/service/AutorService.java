@@ -29,6 +29,7 @@ public class AutorService {
 		return repository.findAll();
 	}
 	
+	@Transactional(readOnly = false)
 	public void save(Autor autor) {
 		repository.save(autor);
 	}
