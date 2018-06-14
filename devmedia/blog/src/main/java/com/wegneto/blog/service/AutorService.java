@@ -37,5 +37,10 @@ public class AutorService {
 			repository.update(autor.getNome(), autor.getBiografia(), autor.getId());
 		}
 	}
+
+	@Transactional(readOnly = false)
+	public void delete(Long id) {
+		repository.delete(id);
+	}
 	
 }
