@@ -40,4 +40,15 @@ public class AutorController {
 		return view;
 	}
 	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public ModelAndView preUpdate(@PathVariable("id") Long id) {
+		Autor autor = service.findById(id);
+		
+		ModelAndView view = new ModelAndView();
+		view.addObject("autor", autor);
+		view.setViewName("autor/cadastro");
+		
+		return view;
+	}
+	
 }

@@ -31,7 +31,11 @@ public class AutorService {
 	
 	@Transactional(readOnly = false)
 	public void save(Autor autor) {
-		repository.save(autor);
+		if (autor.getId() == null) {
+			repository.save(autor);			
+		} else {
+			repository.update(autor.getNome(), autor.getBiografia(), autor.getId());
+		}
 	}
 	
 }
