@@ -36,7 +36,11 @@ public class PostagemService {
 	}
 
 	private void update(Postagem postagem) {
+		Postagem dbRecord = repository.findOne(postagem.getId());
 		
+		dbRecord.setTitulo(postagem.getTitulo());
+		dbRecord.setTexto(postagem.getTexto());
+		repository.save(dbRecord);
 	}
 
 	public Postagem findById(Long id) {
@@ -49,6 +53,11 @@ public class PostagemService {
 	
 	public List<Postagem> findAll() {
 		return repository.findAll();
+	}
+	
+	@Transactional(readOnly = false)
+	public void delete(Long id) {
+		repository.delete(id);
 	}
 	
 }
