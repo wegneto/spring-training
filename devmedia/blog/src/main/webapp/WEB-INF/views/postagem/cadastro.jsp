@@ -23,6 +23,11 @@
 				<form:label path="texto">Texto</form:label><br>
 				<form:textarea path="texto" cols="50" rows="10" required="true" />
 			</div>
+			<div class="campo">
+				<form:label path="categorias">Categorias</form:label><br>
+				<form:select path="categorias" multiple="true">
+					<form:options items="${categorias}" itemValue="id" itemLabel="descricao"/>
+				</form:select>
 			</div>
 			<div class="campo">
 				<input type="submit" value="Salvar">

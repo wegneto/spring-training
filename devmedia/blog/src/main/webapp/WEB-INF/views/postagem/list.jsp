@@ -20,6 +20,7 @@
 				<th>Permalink</th>
 				<th>Data de Postagem</th>
 				<th>Autor</th>
+				<th>Categorias</th>
 				<th>Ação</th>
 			</tr>
 			<c:forEach var="postagem" items="${postagens}" varStatus="i">
@@ -31,6 +32,11 @@
 					<td>${postagem.permalink}</td>
 					<td>${postagem.dataPostagem}</td>
 					<td>${postagem.autor.nome}</td>
+					<td>
+						<c:forEach var="c" items="${postagem.categorias}">
+							[${c.descricao}]
+						</c:forEach>
+					</td>
 					<td>
 						<c:url var="update" value="/postagem/update/${postagem.id}" />
 						<a href="${update}" title="Editar">&#9445</a>

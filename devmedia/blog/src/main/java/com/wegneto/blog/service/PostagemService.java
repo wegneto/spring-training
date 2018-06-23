@@ -40,6 +40,7 @@ public class PostagemService {
 		
 		dbRecord.setTitulo(postagem.getTitulo());
 		dbRecord.setTexto(postagem.getTexto());
+		dbRecord.setCategorias(postagem.getCategorias());
 		repository.save(dbRecord);
 	}
 
