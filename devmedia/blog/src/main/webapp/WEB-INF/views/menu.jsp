@@ -13,4 +13,7 @@
 		<a href="<c:url value="/postagem/add"/>">Adicionar Postagem</a>
 		<a href="<c:url value="/postagem/list"/>">Listar Postagens</a>
 	</nav>
+	<nav>
+		<a href="<c:url value="/categoria/add"/>">Adicionar Categoria</a>
+	</nav>
 </fieldset>
