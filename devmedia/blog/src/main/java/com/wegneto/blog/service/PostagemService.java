@@ -18,7 +18,7 @@ public class PostagemService {
 
 	@Autowired
 	private PostagemRepository repository;
-	
+
 	@Transactional(readOnly = false)
 	public void saveOrUpdate(Postagem postagem) {
 		if (postagem.getId() == null) {
@@ -27,17 +27,17 @@ public class PostagemService {
 			update(postagem);
 		}
 	}
-	
+
 	private void save(Postagem postagem) {
 		postagem.setPermalink(MyReplaceString.formatarPermalink(postagem.getTitulo()));
 		postagem.setDataPostagem(LocalDateTime.now());
 		repository.save(postagem);
-		
+
 	}
 
 	private void update(Postagem postagem) {
 		Postagem dbRecord = repository.findOne(postagem.getId());
-		
+
 		dbRecord.setTitulo(postagem.getTitulo());
 		dbRecord.setTexto(postagem.getTexto());
 		dbRecord.setCategorias(postagem.getCategorias());
@@ -47,18 +47,18 @@ public class PostagemService {
 	public Postagem findById(Long id) {
 		return repository.findOne(id);
 	}
-	
+
 	public Postagem findByPermalink(String permalink) {
 		return repository.findByPermalink(permalink);
 	}
-	
+
 	public List<Postagem> findAll() {
 		return repository.findAll();
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void delete(Long id) {
 		repository.delete(id);
 	}
-	
+
 }
