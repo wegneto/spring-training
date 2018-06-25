@@ -2,6 +2,9 @@
 <fieldset sytle="font-family: monospace; font-size: 10pt;">
 	<legend>Menu</legend>
 	<nav>
+		<a href="<c:url value="/"/>">Home</a>
+	</nav>
+	<nav>
 		<a href="<c:url value="/usuario/add"/>">Adicionar Usuário</a>
 		<a href="<c:url value="/usuario/list"/>">Listar Usuários</a>
 	</nav>

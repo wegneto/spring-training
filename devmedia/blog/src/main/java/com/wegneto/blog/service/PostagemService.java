@@ -61,4 +61,12 @@ public class PostagemService {
 		repository.delete(id);
 	}
 
+	public List<Postagem> findByCategoria(String link) {
+		return repository.findByCategoriasPermalink(link);
+	}
+
+	public List<Postagem> findByAutor(String nome) {
+		return repository.findByAutorNome(nome);
+	}
+
 }
