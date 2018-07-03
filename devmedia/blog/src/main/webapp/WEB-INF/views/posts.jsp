@@ -35,6 +35,5 @@
 			</div>
 		</c:forEach>
 	</fieldset>
-
 </body>
 </html>
