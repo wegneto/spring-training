@@ -34,3 +34,34 @@ fieldset.group .campo {
 a:link {
 	text-decoration: none;
 }
+
+.post-texto {
+	font-family: sans-serif;
+	font-size: 12pt;
+	text-align: justify;
+	line-height: 1.5em;
+	color: gray;
+}
+
+.post-categoria {
+	margin-bottom: 40px;
+	font-family: monospace;
+}
+
+.post-categoria a:link {
+	background: #f2f2f2;
+	display: inline-block;
+	line-height: 16px;
+	color: #999;
+	padding: 3px 7px;
+	margin: 0 5px 2px 0;
+}
+
+.post-categoria a:hover {
+	background: #f0f0f0;
+	display: inline-block;
+	line-height: 16px;
+	color: #999;
+	padding: 3px 7px;
+	margin: 0 5px 2px 0;
+}

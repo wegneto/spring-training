@@ -46,4 +46,13 @@ public class HomeController {
 		return new ModelAndView("posts", model);
 	}
 	
+	@RequestMapping(value = "/{permalink}", method = RequestMethod.GET)
+	public ModelAndView openPostagem(@PathVariable("permalink") String permalink, ModelMap model) {
+		Postagem postagem = postagemService.findByPermalink(permalink);
+		
+		model.addAttribute("postagem", postagem);
+		
+		return new ModelAndView("post", model);
+	}
+	
 }
