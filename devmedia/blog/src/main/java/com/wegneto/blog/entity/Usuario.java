@@ -1,13 +1,16 @@
 package com.wegneto.blog.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,6 +39,9 @@ public class Usuario extends AbstractPersistable<Long> {
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "avatar_id")
 	private Avatar avatar;
+
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<Comentario> comentarios;
 
 	@Override
 	public void setId(Long id) {
@@ -88,6 +94,14 @@ public class Usuario extends AbstractPersistable<Long> {
 
 	public void setAvatar(Avatar avatar) {
 		this.avatar = avatar;
+	}
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
 	}
 
 }
