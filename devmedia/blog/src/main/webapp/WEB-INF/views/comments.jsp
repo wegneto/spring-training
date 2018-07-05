@@ -14,7 +14,18 @@
 			<input type="submit" value="Salvar">
 			<input type="reset" value="Limpar">
 		</div>
-		
 	</form:form>
+	<hr>
+	<c:forEach var="c" items="${postagem.comentarios}">
+		<div>
+			<img src="<c:url value="/avatar/load/${c.usuario.avatar.id}" />">
+			<em>
+				${c.usuario.nome} - 
+				<fmt:parseDate var="date" value="${c.dataComentario}" pattern="yyyy-MM-dd'T'HH:mm:ss" />
+				<fmt:formatDate value="${date}" type="both" />
+			</em>
+			<p>${c.texto }</p>
+		</div>
+	</c:forEach>
 	
 </div>
