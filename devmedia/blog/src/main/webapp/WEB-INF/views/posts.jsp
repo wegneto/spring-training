@@ -29,7 +29,7 @@
 							title="${p.autor.nome }">${p.autor.nome }</a> | Data:
 						<fmt:parseDate var="date" value="${p.dataPostagem}"
 							pattern="yyyy-MM-dd'T'HH:mm:ss" />
-						<fmt:formatDate value="${date}" type="both" />
+						<fmt:formatDate value="${date}" type="both" /> | # ${fn:length(p.comentarios) } Comentário(s)
 					</p>
 				</div>
 				<div>

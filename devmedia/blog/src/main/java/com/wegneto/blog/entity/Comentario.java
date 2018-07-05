@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "comentario")
-public class Comentario extends AbstractPersistable<Long> {
+public class Comentario extends AbstractPersistable<Long> implements Comparable<Comentario> {
 
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String texto;
@@ -61,6 +61,11 @@ public class Comentario extends AbstractPersistable<Long> {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	@Override
+	public int compareTo(Comentario o) {
+		return o.dataComentario.compareTo(this.dataComentario);
 	}
 
 }
