@@ -32,7 +32,6 @@ public class PostagemService {
 		postagem.setPermalink(MyReplaceString.formatarPermalink(postagem.getTitulo()));
 		postagem.setDataPostagem(LocalDateTime.now());
 		repository.save(postagem);
-
 	}
 
 	private void update(Postagem postagem) {

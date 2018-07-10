@@ -28,6 +28,10 @@ public class UsuarioService {
 		return repository.findByEmail(email);
 	}
 	
+	public Usuario findByNome(String nome) {
+		return repository.findByNome(nome);
+	}
+	
 	public Usuario findByAvatar(Avatar avatar) {
 		return repository.findByAvatar(avatar);
 	}

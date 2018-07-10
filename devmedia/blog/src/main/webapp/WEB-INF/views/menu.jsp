@@ -19,4 +19,7 @@
 	<nav>
 		<a href="<c:url value="/categoria/add"/>">Adicionar Categoria</a>
 	</nav>
+	<nav>
+		<a href="<c:url value="/mock/add"/>">Adicionar Mocks</a>
+	</nav>
 </fieldset>
