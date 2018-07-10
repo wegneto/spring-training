@@ -45,19 +45,74 @@ public class MockController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String save() {
-		int categoriaCount = 0;
-		while (categoriaCount < 30) {
-			String descricao = faker.commerce().department();
-			Categoria categoria = categoriaService.findByDescricao(descricao);
-			
-			if (categoria == null && descricao.length() < 30) {
-				categoria = new Categoria();
-				categoria.setDescricao(descricao);
-				categoriaService.saveOrUpdate(categoria);
-				categoriaCount++;
+		criarCategorias();
+		
+		criarUsuarios();
+		
+		criarAutores();
+		
+		criarPosts();
+
+		return "redirect:/";
+	}
+
+	private void criarPosts() {
+		List<Autor> autores = autorService.findAll();
+		for (Autor autor : autores) {
+			for (int p = 0; p < autor.getId().intValue(); p++) {
+				String titulo = faker.book().title();
+				String permalink = MyReplaceString.formatarPermalink(titulo);
+				
+				while (titulo.length() > 60 || permalink.length() > 60 || postagemService.findByPermalink(permalink) != null) {
+					titulo = faker.book().title();
+					permalink = MyReplaceString.formatarPermalink(titulo);
+				}
+				
+				Postagem postagem = new Postagem();
+				postagem.setAutor(autor);
+				postagem.setTitulo(titulo);
+				postagem.setTexto(faker.lorem().paragraph(20));
+				
+				postagemService.saveOrUpdate(postagem);
 			}
 		}
-			
+	}
+
+	private void criarAutores() {
+		List<Usuario> usuarios = usuarioService.findAll();
+		for (Usuario usuario : usuarios) {
+			if (usuario.getPerfil().equals(Perfil.AUTOR)) {
+				Autor autor = new Autor();
+				autor.setNome(usuario.getNome());
+				
+				int q = new Random().nextInt(3);
+				
+				String biografia = faker.gameOfThrones().quote();
+				while(biografia.length() > 255) {
+					switch (q) {
+					case 1:
+						biografia = faker.yoda().quote();
+						break;
+					case 2:
+						biografia = faker.harryPotter().quote();
+						break;
+					case 3:
+						biografia = faker.matz().quote();
+						break;
+					default:
+						biografia = faker.gameOfThrones().quote();
+						break;
+					}
+				}
+				
+				autor.setBiografia(biografia);
+				autor.setUsuario(usuario);
+				autorService.save(autor);
+			}
+		}
+	}
+
+	private void criarUsuarios() {
 		Avatar avatar = avatarService.findById(1L);
 		
 		int usuarioCount = 0;
@@ -92,60 +147,21 @@ public class MockController {
 				usuarioCount++;
 			}
 		}
-		
-		List<Usuario> usuarios = usuarioService.findAll();
-		for (Usuario usuario : usuarios) {
-			if (usuario.getPerfil().equals(Perfil.AUTOR)) {
-				Autor autor = new Autor();
-				autor.setNome(usuario.getNome());
-				
-				int q = new Random().nextInt(3);
-				
-				String biografia = faker.gameOfThrones().quote();
-				while(biografia.length() > 255) {
-					switch (q) {
-					case 1:
-						biografia = faker.yoda().quote();
-						break;
-					case 2:
-						biografia = faker.harryPotter().quote();
-						break;
-					case 3:
-						biografia = faker.matz().quote();
-						break;
-					default:
-						biografia = faker.gameOfThrones().quote();
-						break;
-					}
-				}
-				
-				autor.setBiografia(biografia);
-				autor.setUsuario(usuario);
-				autorService.save(autor);
-			}
-		}
-		
-		List<Autor> autores = autorService.findAll();
-		for (Autor autor : autores) {
-			for (int p = 0; p < autor.getId().intValue(); p++) {
-				String titulo = faker.book().title();
-				String permalink = MyReplaceString.formatarPermalink(titulo);
-				
-				while (postagemService.findByPermalink(permalink) != null) {
-					titulo = faker.book().title();
-					permalink = MyReplaceString.formatarPermalink(titulo);
-				}
-				
-				Postagem postagem = new Postagem();
-				postagem.setAutor(autor);
-				postagem.setTitulo(titulo);
-				postagem.setTexto(faker.lorem().paragraph(20));
-				
-				postagemService.saveOrUpdate(postagem);
-			}
-		}
+	}
 
-		return "redirect:/";
+	private void criarCategorias() {
+		for (int c = 0; c < 30; c++) {
+			String descricao = faker.commerce().department();
+			String permalink = MyReplaceString.formatarPermalink(descricao);
+			while (descricao.length() > 30 || permalink.length() > 30 || categoriaService.findByDescricao(descricao) != null) {
+				descricao = faker.commerce().department();
+				permalink = MyReplaceString.formatarPermalink(descricao);
+			}
+			
+			Categoria categoria = new Categoria();
+			categoria.setDescricao(descricao);
+			categoriaService.saveOrUpdate(categoria);
+		}
 	}
 
 }
