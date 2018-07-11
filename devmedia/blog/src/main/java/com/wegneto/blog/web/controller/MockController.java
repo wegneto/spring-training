@@ -1,5 +1,9 @@
 package com.wegneto.blog.web.controller;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.Random;
 
@@ -39,18 +43,18 @@ public class MockController {
 
 	@Autowired
 	private CategoriaService categoriaService;
-	
+
 	@Autowired
 	private PostagemService postagemService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String save() {
 		criarCategorias();
-		
+
 		criarUsuarios();
-		
+
 		criarAutores();
-		
+
 		criarPosts();
 
 		return "redirect:/";
@@ -62,17 +66,18 @@ public class MockController {
 			for (int p = 0; p < autor.getId().intValue(); p++) {
 				String titulo = faker.book().title();
 				String permalink = MyReplaceString.formatarPermalink(titulo);
-				
-				while (titulo.length() > 60 || permalink.length() > 60 || postagemService.findByPermalink(permalink) != null) {
+
+				while (titulo.length() > 60 || permalink.length() > 60
+						|| postagemService.findByPermalink(permalink) != null) {
 					titulo = faker.book().title();
 					permalink = MyReplaceString.formatarPermalink(titulo);
 				}
-				
+
 				Postagem postagem = new Postagem();
 				postagem.setAutor(autor);
 				postagem.setTitulo(titulo);
 				postagem.setTexto(faker.lorem().paragraph(20));
-				
+
 				postagemService.saveOrUpdate(postagem);
 			}
 		}
@@ -84,11 +89,11 @@ public class MockController {
 			if (usuario.getPerfil().equals(Perfil.AUTOR)) {
 				Autor autor = new Autor();
 				autor.setNome(usuario.getNome());
-				
+
 				int q = new Random().nextInt(3);
-				
+
 				String biografia = faker.gameOfThrones().quote();
-				while(biografia.length() > 255) {
+				while (biografia.length() > 255) {
 					switch (q) {
 					case 1:
 						biografia = faker.yoda().quote();
@@ -104,7 +109,7 @@ public class MockController {
 						break;
 					}
 				}
-				
+
 				autor.setBiografia(biografia);
 				autor.setUsuario(usuario);
 				autorService.save(autor);
@@ -114,26 +119,41 @@ public class MockController {
 
 	private void criarUsuarios() {
 		Avatar avatar = avatarService.findById(1L);
-		
+
 		int usuarioCount = 0;
 		while (usuarioCount < 15) {
 			String email = faker.internet().safeEmailAddress();
 			boolean emailJaCadastrado = usuarioService.findByEmail(email) != null;
-			
+
 			String nome = faker.name().fullName();
 			boolean nomeJaCadastrado = usuarioService.findByNome(nome) != null;
-			
+
 			if (!emailJaCadastrado && !nomeJaCadastrado) {
 				Usuario usuario = new Usuario();
 				usuario.setNome(faker.name().fullName());
 				usuario.setSenha("1234");
 				usuario.setEmail(email);
-				
+
 				Avatar userAvatar = new Avatar();
-				userAvatar.setTitulo(avatar.getTitulo());
-				userAvatar.setTipo(avatar.getTipo());
-				userAvatar.setAvatar(avatar.getAvatar());
-				
+				try {
+					URL url = new URL(faker.avatar().image());
+					InputStream in = new BufferedInputStream(url.openStream());
+					ByteArrayOutputStream out = new ByteArrayOutputStream();
+					byte[] buf = new byte[1024];
+					int n = 0;
+					while (-1 != (n = in.read(buf))) {
+						out.write(buf, 0, n);
+					}
+					out.close();
+					in.close();
+					byte[] response = out.toByteArray();
+					userAvatar.setAvatar(response);
+				} catch (Exception e) {
+				}
+
+				userAvatar.setTitulo("avatar.jpg");
+				userAvatar.setTipo("image/jpeg");
+
 				usuario.setAvatar(userAvatar);
 
 				if (usuarioCount % 2 == 0) {
@@ -141,9 +161,9 @@ public class MockController {
 				} else {
 					usuario.setPerfil(Perfil.LEITOR);
 				}
-				
+
 				usuarioService.save(usuario);
-				
+
 				usuarioCount++;
 			}
 		}
@@ -153,11 +173,12 @@ public class MockController {
 		for (int c = 0; c < 30; c++) {
 			String descricao = faker.commerce().department();
 			String permalink = MyReplaceString.formatarPermalink(descricao);
-			while (descricao.length() > 30 || permalink.length() > 30 || categoriaService.findByDescricao(descricao) != null) {
+			while (descricao.length() > 30 || permalink.length() > 30
+					|| categoriaService.findByDescricao(descricao) != null) {
 				descricao = faker.commerce().department();
 				permalink = MyReplaceString.formatarPermalink(descricao);
 			}
-			
+
 			Categoria categoria = new Categoria();
 			categoria.setDescricao(descricao);
 			categoriaService.saveOrUpdate(categoria);
