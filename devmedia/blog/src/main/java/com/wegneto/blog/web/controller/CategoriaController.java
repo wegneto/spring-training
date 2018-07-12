@@ -58,7 +58,8 @@ public class CategoriaController {
 	}
 
 	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
-	public ModelAndView pageCategorias(@PathVariable("page") Integer pagina) {
+	public ModelAndView pageCategorias(@ModelAttribute("categoria") Categoria categoria,
+			@PathVariable("page") Integer pagina) {
 		ModelAndView view = new ModelAndView("categoria/cadastro");
 
 		Page<Categoria> page = service.findByPagination(pagina - 1, 5);
