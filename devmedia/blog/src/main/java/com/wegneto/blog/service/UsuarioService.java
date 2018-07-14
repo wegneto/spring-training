@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -66,6 +69,11 @@ public class UsuarioService {
 	public void updateSenha(Usuario usuario) {
 		String hash = new BCryptPasswordEncoder().encode(usuario.getSenha());
 		repository.updateSenha(hash, usuario.getId());
+	}
+	
+	public Page<Usuario> findByPagination(int page, int size) {
+		Pageable pageable = new PageRequest(page, size);
+		return repository.findAllByOrderByNomeAsc(pageable);
 	}
 
 }
