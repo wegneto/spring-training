@@ -19,44 +19,44 @@ import com.wegneto.blog.repository.UsuarioRepository;
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class UsuarioService {
-	
+
 	@Autowired
 	private UsuarioRepository repository;
-	
+
 	public List<Usuario> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public Usuario findByEmail(String email) {
 		return repository.findByEmail(email);
 	}
-	
+
 	public Usuario findByNome(String nome) {
 		return repository.findByNome(nome);
 	}
-	
+
 	public Usuario findByAvatar(Avatar avatar) {
 		return repository.findByAvatar(avatar);
 	}
-	
+
 	public Usuario findById(Long id) {
 		return repository.findOne(id);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void delete(Long id) {
 		repository.delete(id);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void save(Usuario usuario) {
 		if (usuario.getDataCadastro() == null) {
 			usuario.setDataCadastro(LocalDate.now());
 		}
-		
+
 		String hash = new BCryptPasswordEncoder().encode(usuario.getSenha());
 		usuario.setSenha(hash);
-		
+
 		repository.save(usuario);
 	}
 
@@ -70,7 +70,7 @@ public class UsuarioService {
 		String hash = new BCryptPasswordEncoder().encode(usuario.getSenha());
 		repository.updateSenha(hash, usuario.getId());
 	}
-	
+
 	public Page<Usuario> findByPagination(int page, int size) {
 		Pageable pageable = new PageRequest(page, size);
 		return repository.findAllByOrderByNomeAsc(pageable);
