@@ -1,8 +1,7 @@
 package com.wegneto.blog.web.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,10 +43,10 @@ public class AutorController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
-		List<Autor> autores = service.findAll();
+		Page<Autor> page = service.findByPagination(0, 5);
 		
 		ModelAndView view = new ModelAndView();
-		view.addObject("autores", autores);
+		view.addObject("page", page);
 		view.setViewName("autor/list");
 		
 		return view;
@@ -68,6 +67,16 @@ public class AutorController {
 	public String delete(@PathVariable("id") Long id) {
 		service.delete(id);
 		return "redirect:/autor/add";
+	}
+	
+	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
+	public ModelAndView pageAutores(@PathVariable("page") Integer pagina) {
+		ModelAndView view = new ModelAndView("autor/list");
+
+		Page<Autor> page = service.findByPagination(pagina - 1, 5);
+		view.addObject("page", page);
+
+		return view;
 	}
 	
 }
