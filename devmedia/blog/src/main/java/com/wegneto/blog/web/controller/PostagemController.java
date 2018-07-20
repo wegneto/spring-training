@@ -3,6 +3,7 @@ package com.wegneto.blog.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -49,7 +50,9 @@ public class PostagemController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(ModelMap model) {
-		model.addAttribute("postagens", postagemService.findAll());
+		Page<Postagem> page = postagemService.findByPagination(0, 5);
+		model.addAttribute("page", page);
+		
 		return new ModelAndView("postagem/list", model);
 	}
 
@@ -66,6 +69,16 @@ public class PostagemController {
 		model.addAttribute("categorias", categoriaService.findAll());
 
 		return new ModelAndView("postagem/cadastro", model);
+	}
+	
+	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
+	public ModelAndView pagePostagens(@PathVariable("page") Integer pagina) {
+		ModelAndView view = new ModelAndView("postagem/list");
+
+		Page<Postagem> page = postagemService.findByPagination(pagina - 1, 5);
+		view.addObject("page", page);
+
+		return view;
 	}
 
 }
