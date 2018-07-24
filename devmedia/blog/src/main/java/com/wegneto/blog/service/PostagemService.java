@@ -75,4 +75,9 @@ public class PostagemService {
 		Pageable pageable = new PageRequest(page, size);
 		return repository.findAllByOrderByDataPostagemDesc(pageable);
 	}
+
+	public Page<Postagem> findByPaginationByCategoria(int page, int size, String permalink) {
+		Pageable pageable = new PageRequest(page, size);
+		return repository.findAllByCategoriasPermalinkOrderByDataPostagemDesc(pageable, permalink);
+	}
 }
