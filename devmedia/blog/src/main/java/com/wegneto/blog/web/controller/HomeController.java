@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wegneto.blog.entity.Comentario;
@@ -64,6 +65,25 @@ public class HomeController {
 		Page<Postagem> page = postagemService.findByPagination(pagina - 1, 5);
 		model.addAttribute("page", page);
 		model.addAttribute("urlPagination", "/page");
+
+		return new ModelAndView("posts", model);
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView search(@RequestParam("texto") String texto, ModelMap model) {
+		Page<Postagem> page = postagemService.findByTexto(0, 5, texto);
+		model.addAttribute("page", page);
+		model.addAttribute("urlPagination", "/search/texto/"+texto+"/page");
+
+		return new ModelAndView("posts", model);
+	}
+
+	@RequestMapping(value = "/search/texto/{texto}/page/{page}", method = RequestMethod.GET)
+	public ModelAndView search(@PathVariable("texto") String texto, @PathVariable("page") Integer pagina,
+			ModelMap model) {
+		Page<Postagem> page = postagemService.findByTexto(pagina - 1, 5, texto);
+		model.addAttribute("page", page);
+		model.addAttribute("urlPagination", "/search/texto/"+texto+"/page");
 
 		return new ModelAndView("posts", model);
 	}
