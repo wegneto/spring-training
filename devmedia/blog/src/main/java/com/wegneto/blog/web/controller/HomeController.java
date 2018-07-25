@@ -1,7 +1,5 @@
 package com.wegneto.blog.web.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -26,6 +24,7 @@ public class HomeController {
 	public ModelAndView home(ModelMap model) {
 		Page<Postagem> page = postagemService.findByPagination(0, 5);
 		model.addAttribute("page", page);
+		model.addAttribute("urlPagination", "/page");
 
 		return new ModelAndView("posts", model);
 	}
@@ -35,15 +34,17 @@ public class HomeController {
 			ModelMap model) {
 		Page<Postagem> page = postagemService.findByPaginationByCategoria(pagina - 1, 5, link);
 		model.addAttribute("page", page);
+		model.addAttribute("urlPagination", "/categoria/" + link + "/page");
 
 		return new ModelAndView("posts", model);
 	}
 
-	@RequestMapping(value = "/autor/{nome}", method = RequestMethod.GET)
-	public ModelAndView postsByAutor(@PathVariable("nome") String nome, ModelMap model) {
-		List<Postagem> postagens = postagemService.findByAutor(nome);
-
-		model.addAttribute("postagens", postagens);
+	@RequestMapping(value = "/autor/{id}/page/{page}", method = RequestMethod.GET)
+	public ModelAndView postsByAutor(@PathVariable("id") Long id, @PathVariable("page") Integer pagina,
+			ModelMap model) {
+		Page<Postagem> page = postagemService.findByPaginationByAutor(pagina - 1, 5, id);
+		model.addAttribute("page", page);
+		model.addAttribute("urlPagination", "/autor/" + id + "/page");
 
 		return new ModelAndView("posts", model);
 	}
@@ -62,6 +63,7 @@ public class HomeController {
 	public ModelAndView pageHome(@PathVariable("page") Integer pagina, ModelMap model) {
 		Page<Postagem> page = postagemService.findByPagination(pagina - 1, 5);
 		model.addAttribute("page", page);
+		model.addAttribute("urlPagination", "/page");
 
 		return new ModelAndView("posts", model);
 	}
