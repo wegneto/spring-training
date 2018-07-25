@@ -68,6 +68,7 @@ public class UsuarioController {
 	public ModelAndView listUsuarios(ModelMap model) {
 		Page<Usuario> page = usuarioService.findByPagination(0, 5);
 		model.addAttribute("page", page);
+		model.addAttribute("urlPagination", "/usuario/page");
 
 		return new ModelAndView("usuario/list", model);
 	}
@@ -111,6 +112,19 @@ public class UsuarioController {
 
 		Page<Usuario> page = usuarioService.findByPagination(pagina - 1, 5);
 		view.addObject("page", page);
+		view.addObject("urlPagination", "/usuario/page");
+
+		return view;
+	}
+
+	@RequestMapping(value = "/sort/{order}/{field}/page/{page}", method = RequestMethod.GET)
+	public ModelAndView pageUsuario(@PathVariable("page") Integer pagina, @PathVariable("order") String order,
+			@PathVariable("field") String field) {
+		ModelAndView view = new ModelAndView("usuario/list");
+
+		Page<Usuario> page = usuarioService.findByPaginationOrderByField(pagina - 1, 5, field, order);
+		view.addObject("page", page);
+		view.addObject("urlPagination", "/usuario/sort/" + order + "/" + field + "/page");
 
 		return view;
 	}

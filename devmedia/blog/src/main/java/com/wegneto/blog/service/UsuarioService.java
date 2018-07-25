@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -74,6 +77,13 @@ public class UsuarioService {
 	public Page<Usuario> findByPagination(int page, int size) {
 		Pageable pageable = new PageRequest(page, size);
 		return repository.findAllByOrderByNomeAsc(pageable);
+	}
+
+	public Page<Usuario> findByPaginationOrderByField(int page, int size, String field, String order) {
+		Sort sort = new Sort(new Order(Direction.fromString(order), field));
+		Pageable pageable = new PageRequest(page, size, sort);
+
+		return repository.findAll(pageable);
 	}
 
 }
