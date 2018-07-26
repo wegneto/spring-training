@@ -52,6 +52,7 @@ public class PostagemController {
 	public ModelAndView list(ModelMap model) {
 		Page<Postagem> page = postagemService.findByPagination(0, 5);
 		model.addAttribute("page", page);
+		model.addAttribute("urlPagination", "/postagem/page");
 		
 		return new ModelAndView("postagem/list", model);
 	}
@@ -77,6 +78,7 @@ public class PostagemController {
 
 		Page<Postagem> page = postagemService.findByPagination(pagina - 1, 5);
 		view.addObject("page", page);
+		view.addObject("urlPagination", "/postagem/page");
 
 		return view;
 	}

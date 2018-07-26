@@ -47,8 +47,9 @@ public class AutorController {
 		
 		ModelAndView view = new ModelAndView();
 		view.addObject("page", page);
+		view.addObject("urlPagination", "/autor/page");
 		view.setViewName("autor/list");
-		
+
 		return view;
 	}
 	
@@ -75,6 +76,7 @@ public class AutorController {
 
 		Page<Autor> page = service.findByPagination(pagina - 1, 5);
 		view.addObject("page", page);
+		view.addObject("urlPagination", "/autor/page");
 
 		return view;
 	}
