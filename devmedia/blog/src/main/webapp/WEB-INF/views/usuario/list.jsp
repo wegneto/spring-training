@@ -45,7 +45,10 @@
 					</a></td>
 					<td>${usuario.nome}</td>
 					<td>${usuario.email}</td>
-					<td>${usuario.dataCadastro}</td>
+					<td>
+						<fmt:parseDate var="date" value="${usuario.dataCadastro}" pattern="yyyy-MM-dd" />
+						<fmt:formatDate value="${date}" type="date" />
+					</td>
 					<td>${usuario.perfil}</td>
 					<td><c:url var="update" value="/usuario/update/${usuario.id}" />
 						<a href="${update}" title="Editar">&#9445</a> <a href="#"
