@@ -15,6 +15,9 @@
 	<br>
 	<fieldset>
 		<legend>Lista de Postagens</legend>
+		<div>
+			<input id="search" type="search" placeholder="Busca por título" value="">
+		</div>
 		<table class="table">
 			<tr>
 				<th>Código</th>

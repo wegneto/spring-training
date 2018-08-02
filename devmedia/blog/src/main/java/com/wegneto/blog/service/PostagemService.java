@@ -90,4 +90,9 @@ public class PostagemService {
 		Pageable pageable = new PageRequest(page, size);
 		return repository.findByTextoContainingIgnoreCaseOrderByDataPostagemDesc(pageable, texto);
 	}
+
+	public Page<Postagem> findByTitulo(int page, int size, String titulo) {
+		Pageable pageable = new PageRequest(page, size);
+		return repository.findAllByTituloContainingIgnoreCaseOrderByDataPostagemDesc(pageable, titulo);
+	}
 }

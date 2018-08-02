@@ -82,4 +82,13 @@ public class PostagemController {
 		return view;
 	}
 
+	@RequestMapping(value = "/ajax/titulo/{titulo}", method = RequestMethod.GET)
+	public ModelAndView searchByAjax(@PathVariable("titulo") String titulo) {
+		ModelAndView view = new ModelAndView("postagem/table-rows");
+
+		Page<Postagem> page = postagemService.findByTitulo(0, 5, titulo);
+		view.addObject("page", page);
+
+		return view;
+	}
 }
