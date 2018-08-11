@@ -3,6 +3,8 @@ package com.wegneto.blog.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,11 @@ public class AutorController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("autor") Autor autor) {
+	public String save(@ModelAttribute("autor") @Validated Autor autor, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "autor/cadastro";
+		}
+		
 		service.save(autor);
 		return "redirect:/autor/perfil/" + autor.getId();
 	}

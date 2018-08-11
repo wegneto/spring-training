@@ -17,11 +17,13 @@
 			<legend>Cadastro de Autor</legend>
 			<div class="campo">
 				<form:label path="nome">Nome do Autor</form:label><br>
-				<form:input path="nome" type="text" required="true" />
+				<form:input path="nome" type="text" />
+				<form:errors path="nome" cssClass="error" />
 			</div>
 			<div class="campo">
 				<form:label path="biografia">Biografia</form:label><br>
-				<form:textarea path="biografia" cols="50" rows="10" required="true" />
+				<form:textarea path="biografia" cols="50" rows="10" />
+				<form:errors path="biografia" cssClass="error" />
 			</div>
 			<div class="campo">
 				<input type="submit" value="Salvar">
