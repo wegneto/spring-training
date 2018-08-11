@@ -100,7 +100,9 @@ public class Postagem extends AbstractPersistable<Long> {
 	}
 
 	public List<Comentario> getComentarios() {
-		Collections.sort(comentarios);
+		if (comentarios != null) {
+			Collections.sort(comentarios);
+		}
 		return comentarios;
 	}
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wegneto.blog.entity.Postagem;
@@ -91,4 +92,20 @@ public class PostagemController {
 
 		return view;
 	}
+	
+	@RequestMapping(value = "/ajax/add", method = RequestMethod.GET)
+	public ModelAndView cadastroAjax() {
+		ModelAndView view = new ModelAndView("postagem/cadastro-ajax");
+		view.addObject("categorias", categoriaService.findAll());
+
+		return view;
+	}
+	
+	@RequestMapping(value = "/ajax/save", method = RequestMethod.POST)
+	public @ResponseBody Postagem saveAjax(Postagem postagem) {
+		postagemService.saveOrUpdate(postagem);
+		
+		return postagem;
+	}
+	
 }

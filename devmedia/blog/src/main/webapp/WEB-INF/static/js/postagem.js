@@ -28,6 +28,10 @@ $(document).ready(function() {
 						+ "'>"
 						+ postagem.titulo
 						+ "</a></p>");
+				
+				$('#save-ajax').each(function() {
+					this.reset();
+				});
 			})
 			.fail(function(error) {
 				$('#info').empty().append("<p>Error: " + error.status + ", " + error.statusText + "</p>");
