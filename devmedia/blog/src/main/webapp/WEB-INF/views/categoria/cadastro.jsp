@@ -20,6 +20,7 @@
 				<form:label path="descricao">Descrição</form:label>
 				<br>
 				<form:input path="descricao" type="text" required="true" />
+				<form:errors path="descricao" cssClass="error" />
 			</div>
 			</div>
 			<div class="campo">

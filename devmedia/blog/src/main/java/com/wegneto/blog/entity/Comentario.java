@@ -8,12 +8,16 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "comentario")
 public class Comentario extends AbstractPersistable<Long> implements Comparable<Comentario> {
 
+	@NotBlank
+	@Length(min = 5, max = 255)
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String texto;
 

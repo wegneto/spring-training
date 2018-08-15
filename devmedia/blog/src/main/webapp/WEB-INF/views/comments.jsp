@@ -8,6 +8,7 @@
 		<div>
 			<form:label path="texto">Digite seu comentário</form:label>
 			<form:textarea path="texto" rows="5" cols="80" required="true" />
+			<form:errors path="texto" cssClass="error" />
 		</div>
 		<br>
 		<div>

@@ -9,12 +9,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "categoria")
 public class Categoria extends AbstractPersistable<Long> {
 
+	@NotBlank
+	@Length(min = 3, max = 30)
 	@Column(nullable = false, unique = true, length = 30)
 	private String descricao;
 
