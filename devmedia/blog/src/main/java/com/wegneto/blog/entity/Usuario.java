@@ -13,8 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "usuario")
@@ -42,6 +44,9 @@ public class Usuario extends AbstractPersistable<Long> {
 
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Comentario> comentarios;
+	
+	@Transient
+	private MultipartFile file;
 
 	@Override
 	public void setId(Long id) {
@@ -102,6 +107,14 @@ public class Usuario extends AbstractPersistable<Long> {
 
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 }
