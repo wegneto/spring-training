@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "avatar")
@@ -20,7 +22,10 @@ public class Avatar extends AbstractPersistable<Long> {
 	@Lob
 	@Column(nullable = false)
 	private byte[] avatar;
-	
+
+	@Transient
+	private MultipartFile file;
+
 	@Override
 	public void setId(Long id) {
 		super.setId(id);
@@ -48,6 +53,14 @@ public class Avatar extends AbstractPersistable<Long> {
 
 	public void setAvatar(byte[] avatar) {
 		this.avatar = avatar;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 }

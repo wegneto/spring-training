@@ -16,8 +16,9 @@
 		<fieldset class="grupo">
 			<legend>Editar Avatar</legend>
 			<div class="campo">
-				<label>Avatar</label>
-				<input type="file" name="file" required="true">
+				<form:label path="file">Avatar</form:label>
+				<form:input type="file" path="file" />
+				<form:errors path="file" cssClass="error" />
 			</div>
 			<div class="campo">
 				<input type="submit" value="Salvar"> <input type="reset"

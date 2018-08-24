@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wegneto.blog.entity.Avatar;
@@ -36,7 +34,7 @@ public class UsuarioController {
 	@Autowired
 	private AvatarService avatarService;
 
-	@InitBinder
+	@InitBinder("usuario")
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Perfil.class, new PerfilEditorSupport());
 		binder.setValidator(new UsuarioValidator());
@@ -52,7 +50,7 @@ public class UsuarioController {
 		if (result.hasErrors()) {
 			return "usuario/cadastro";
 		}
-		
+
 		Avatar avatar = avatarService.getAvatarByUpload(usuario.getFile());
 		usuario.setAvatar(avatar);
 		usuarioService.save(usuario);
@@ -81,34 +79,51 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = { "/update/{id}", "/update" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView update(@PathVariable("id") Optional<Long> id, @ModelAttribute("usuario") Usuario usuario) {
+	public ModelAndView update(@PathVariable("id") Optional<Long> id,
+			@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result) {
 		ModelAndView view = new ModelAndView();
 
 		if (id.isPresent()) {
 			usuario = usuarioService.findById(id.get());
 			view.addObject("usuario", usuario);
 			view.setViewName("usuario/atualizar");
-		} else {
-			usuarioService.updateNomeAndEmail(usuario);
-			view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
+			return view;
 		}
+
+		if (result.hasErrors()) {
+			view.setViewName("usuario/atualizar");
+			return view;
+		}
+
+		usuarioService.updateNomeAndEmail(usuario);
+		view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
 
 		return view;
 	}
 
 	@RequestMapping(value = { "/update/senha/{id}", "/update/senha" }, method = { RequestMethod.GET,
 			RequestMethod.POST })
-	public ModelAndView updateSenha(@PathVariable("id") Optional<Long> id, @ModelAttribute("usuario") Usuario usuario) {
+	public ModelAndView updateSenha(@PathVariable("id") Optional<Long> id,
+			@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result) {
 		ModelAndView view = new ModelAndView();
 
 		if (id.isPresent()) {
 			usuario = usuarioService.findById(id.get());
 			view.addObject("usuario", usuario);
 			view.setViewName("usuario/atualizar");
-		} else {
-			usuarioService.updateSenha(usuario);
-			view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
+			return view;
 		}
+
+		if (result.hasFieldErrors("senha")) {
+			usuario = usuarioService.findById(usuario.getId());
+			view.addObject("nome", usuario.getNome());
+			view.addObject("email", usuario.getEmail());
+			view.setViewName("usuario/atualizar");
+			return view;
+		}
+
+		usuarioService.updateSenha(usuario);
+		view.setViewName("redirect:/usuario/perfil/" + usuario.getId());
 
 		return view;
 	}
