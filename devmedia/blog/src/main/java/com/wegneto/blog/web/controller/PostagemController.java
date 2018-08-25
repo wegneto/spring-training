@@ -2,6 +2,8 @@ package com.wegneto.blog.web.controller;
 
 import java.util.List;
 
+import javax.swing.text.View;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -48,15 +50,17 @@ public class PostagemController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(@ModelAttribute("postagem") @Validated Postagem postagem, BindingResult result) {
+		ModelAndView view = new ModelAndView();
+		
 		if (result.hasErrors()) {
-			ModelAndView view = new ModelAndView("postagem/cadastro");
+			view.setViewName("postagem/cadastro");
 			view.addObject("categorias", categoriaService.findAll());
-
-			return view;
+		} else {
+			postagemService.saveOrUpdate(postagem);
+			view.setViewName("redirect:/postagem/list");
 		}
 
-		postagemService.saveOrUpdate(postagem);
-		return new ModelAndView("redirect:/postagem/list");
+		return view;
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -114,15 +118,15 @@ public class PostagemController {
 	@RequestMapping(value = "/ajax/save", method = RequestMethod.POST)
 	public @ResponseBody PostagemAjaxValidator saveAjax(@Validated Postagem postagem, BindingResult result) {
 		PostagemAjaxValidator validator = new PostagemAjaxValidator();
-		
+
 		if (result.hasErrors()) {
 			validator.setStatus("FAIL");
 			validator.validar(result);
 			return validator;
 		}
-		
+
 		postagemService.saveOrUpdate(postagem);
-		
+
 		validator.setPostagem(postagem);
 
 		return validator;
