@@ -17,11 +17,13 @@
 			<legend>Cadastro de Postagem</legend>
 			<div class="campo">
 				<label for="titulo">Título</label><br>
-				<input name="titulo" type="text" required="true" />
+				<input name="titulo" type="text" />
+				<span id="titulo-error" class="error"></span>
 			</div>
 			<div class="campo">
 				<label for="texto">Texto</label><br>
-				<textarea name="texto" cols="50" rows="10" required="true"></textarea>
+				<textarea name="texto" cols="50" rows="10" ></textarea>
+				<span id="texto-error" class="error"></span>
 			</div>
 			<div class="campo">
 				<label for="categorias">Categorias</label><br>
