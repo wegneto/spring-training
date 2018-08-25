@@ -1,3 +1,4 @@
+
 package com.wegneto.blog.web.controller;
 
 import java.util.List;
@@ -120,12 +121,10 @@ public class PostagemController {
 		if (result.hasErrors()) {
 			validator.setStatus("FAIL");
 			validator.validar(result);
-			return validator;
+		} else {
+			postagemService.saveOrUpdate(postagem);
+			validator.setPostagem(postagem);
 		}
-
-		postagemService.saveOrUpdate(postagem);
-
-		validator.setPostagem(postagem);
 
 		return validator;
 	}
