@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +21,7 @@ import com.wegneto.blog.entity.Postagem;
 import com.wegneto.blog.service.CategoriaService;
 import com.wegneto.blog.service.PostagemService;
 import com.wegneto.blog.web.editor.CategoriaEditorSupport;
+import com.wegneto.blog.web.validator.PostagemAjaxValidator;
 
 @Controller
 @RequestMapping("postagem")
@@ -44,9 +47,16 @@ public class PostagemController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("postagem") Postagem postagem) {
+	public ModelAndView save(@ModelAttribute("postagem") @Validated Postagem postagem, BindingResult result) {
+		if (result.hasErrors()) {
+			ModelAndView view = new ModelAndView("postagem/cadastro");
+			view.addObject("categorias", categoriaService.findAll());
+
+			return view;
+		}
+
 		postagemService.saveOrUpdate(postagem);
-		return "redirect:/postagem/list";
+		return new ModelAndView("redirect:/postagem/list");
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -54,7 +64,7 @@ public class PostagemController {
 		Page<Postagem> page = postagemService.findByPagination(0, 5);
 		model.addAttribute("page", page);
 		model.addAttribute("urlPagination", "/postagem/page");
-		
+
 		return new ModelAndView("postagem/list", model);
 	}
 
@@ -72,7 +82,7 @@ public class PostagemController {
 
 		return new ModelAndView("postagem/cadastro", model);
 	}
-	
+
 	@RequestMapping(value = "/ajax/page/{page}", method = RequestMethod.GET)
 	public ModelAndView pagePostagens(@PathVariable("page") Integer pagina) {
 		ModelAndView view = new ModelAndView("postagem/table-rows");
@@ -87,12 +97,12 @@ public class PostagemController {
 	public ModelAndView searchByAjax(@PathVariable("titulo") String titulo, @PathVariable("page") Integer pagina) {
 		ModelAndView view = new ModelAndView("postagem/table-rows");
 
-		Page<Postagem> page = postagemService.findByTitulo(pagina-1, 5, titulo);
+		Page<Postagem> page = postagemService.findByTitulo(pagina - 1, 5, titulo);
 		view.addObject("page", page);
 
 		return view;
 	}
-	
+
 	@RequestMapping(value = "/ajax/add", method = RequestMethod.GET)
 	public ModelAndView cadastroAjax() {
 		ModelAndView view = new ModelAndView("postagem/cadastro-ajax");
@@ -100,12 +110,22 @@ public class PostagemController {
 
 		return view;
 	}
-	
+
 	@RequestMapping(value = "/ajax/save", method = RequestMethod.POST)
-	public @ResponseBody Postagem saveAjax(Postagem postagem) {
+	public @ResponseBody PostagemAjaxValidator saveAjax(@Validated Postagem postagem, BindingResult result) {
+		PostagemAjaxValidator validator = new PostagemAjaxValidator();
+		
+		if (result.hasErrors()) {
+			validator.setStatus("FAIL");
+			validator.validar(result);
+			return validator;
+		}
+		
 		postagemService.saveOrUpdate(postagem);
 		
-		return postagem;
+		validator.setPostagem(postagem);
+
+		return validator;
 	}
-	
+
 }

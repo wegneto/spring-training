@@ -17,11 +17,13 @@
 			<legend>Cadastro de Postagem</legend>
 			<div class="campo">
 				<form:label path="titulo">Título</form:label><br>
-				<form:input path="titulo" type="text" required="true" />
+				<form:input path="titulo" type="text" />
+				<form:errors path="titulo" cssClass="error" />
 			</div>
 			<div class="campo">
 				<form:label path="texto">Texto</form:label><br>
-				<form:textarea path="texto" cols="50" rows="10" required="true" />
+				<form:textarea path="texto" cols="50" rows="10" />
+				<form:errors path="texto" cssClass="error" />
 			</div>
 			<div class="campo">
 				<form:label path="categorias">Categorias</form:label><br>
