@@ -35,6 +35,9 @@ $(document).ready(function() {
 						this.reset();
 					});
 					
+					$('#titulo-error').empty();
+					$('#texto-error').empty();
+					
 				} else {
 					$('#titulo-error').empty().append(result.tituloError);
 					$('#texto-error').empty().append(result.textoError);
