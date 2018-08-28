@@ -43,7 +43,6 @@ public class UsuarioValidator implements Validator {
 				errors.rejectValue("file", "file", "Selecione uma imagem até 100kb.");
 			}
 		}
-		
 	}
 
 }
