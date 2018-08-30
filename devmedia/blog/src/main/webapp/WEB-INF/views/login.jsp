@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:import url="menu.jsp" />
-
+	<br>
 	<fieldset>
 		<c:url value="/auth/login" var="loginUrl" />
 		<form action="${loginUrl}" method="post">
@@ -22,11 +22,11 @@
 			</c:if>
 			<p>
 				<label for="username">Username</label> 
-				<input type="text" id="username" name="username" />
+				<input type="text" id="username" name="j_username" />
 			</p>
 			<p>
 				<label for="password">Password</label> 
-				<input type="password" id="password" name="password" />
+				<input type="password" id="password" name="j_password" />
 			</p>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button type="submit" class="btn">Log in</button>
