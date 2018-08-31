@@ -111,3 +111,7 @@ a:link {
 .error {
 	color: #ff0000;
 }
+
+.login {
+	text-align: right;
+}

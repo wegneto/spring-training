@@ -18,17 +18,23 @@
 		<a href="<c:url value="/postagem/list"/>">Listar Postagens</a>
 	</nav>
 	<nav>
-		<a href="<c:url value="/categoria/add"/>">Adicionar Categoria</a>
+		<security:authorize access="hasAnyAuthority('ADMIN', 'AUTOR')">
+			<a href="<c:url value="/categoria/add"/>">Adicionar Categoria</a>
+		</security:authorize>
 	</nav>
 	<nav>
 		<a href="<c:url value="/mock/add"/>">Adicionar Mocks</a>
 	</nav>
-	<nav>
-		<a href="<c:url value="/auth/form"/>">Entrar</a>
-		<a href="">Cadastrar-se</a>
-		<form action="<c:url value="/logout"/>" method="post">
-			<security:csrfInput/>
-			<button type="submit">Sair</button>
-		</form>
+	<nav class="login">
+		<c:if test="${logado == null }">
+			<a href="<c:url value="/auth/form"/>">Entrar</a>
+			<a href="">Cadastrar-se</a>
+		</c:if>
+		<security:authorize access="hasAnyAuthority('ADMIN', 'AUTOR', 'LEITOR')">
+			<form action="<c:url value="/logout"/>" method="post">
+				<security:csrfInput/>
+				<button type="submit">Sair</button>
+			</form>
+		</security:authorize>
 	</nav>
 </fieldset>
