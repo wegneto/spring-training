@@ -5,8 +5,12 @@
 		<a href="<c:url value="/"/>">Home</a>
 	</nav>
 	<nav>
-		<a href="<c:url value="/usuario/add"/>">Adicionar Usuário</a>
-		<a href="<c:url value="/usuario/list"/>">Listar Usuários</a>
+		<security:authorize access="hasAnyAuthority('ADMIN', 'AUTOR', 'LEITOR')">
+			<a href="<c:url value="/usuario/perfil/${logado.id }"/>">Perfil do Usuário</a>
+		</security:authorize>
+		<security:authorize access="hasAuthority('ADMIN')">
+			<a href="<c:url value="/usuario/list"/>">Listar Usuários</a>
+		</security:authorize>
 	</nav>
 	<nav>
 		<a href="<c:url value="/autor/add"/>">Adicionar Autor</a>
@@ -28,7 +32,7 @@
 	<nav class="login">
 		<c:if test="${logado == null }">
 			<a href="<c:url value="/auth/form"/>">Entrar</a>
-			<a href="">Cadastrar-se</a>
+			<a href="<c:url value="/usuario/add"/>">Cadastrar-se</a>
 		</c:if>
 		<security:authorize access="hasAnyAuthority('ADMIN', 'AUTOR', 'LEITOR')">
 			<form action="<c:url value="/logout"/>" method="post">
