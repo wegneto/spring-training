@@ -7,4 +7,10 @@ public class BaseballCoach implements Coach {
 		return "This is your today's Baseball workout";
 	}
 
+	@Override
+	public String getDailyFortune() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
