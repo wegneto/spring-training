@@ -2,6 +2,12 @@ package com.wegneto.springdemo;
 
 public class BaseballCoach implements Coach {
 	
+	private FortuneService fortuneService;
+	
+	public BaseballCoach(FortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+	
 	@Override
 	public String getDailyWorkout() {
 		return "This is your today's Baseball workout";
@@ -9,8 +15,7 @@ public class BaseballCoach implements Coach {
 
 	@Override
 	public String getDailyFortune() {
-		// TODO Auto-generated method stub
-		return null;
+		return fortuneService.getFortune();
 	}
 
 }
