@@ -17,7 +17,9 @@
 	
 	<bean id="myCricketCoach"
 		class="com.wegneto.springdemo.CricketCoach">
-		<property name="fortuneService" ref="myFortuneService"></property>	
+		<property name="fortuneService" ref="myFortuneService" />	
+		<property name="emailAddress" value="coach@cricket.com" />	
+		<property name="team" value="My Cricket Team" />	
 	</bean>
 
 </beans>
