@@ -11,7 +11,8 @@
 		class="com.wegneto.springdemo.HappyFortuneService"></bean>
 
 	<bean id="myCoach" 
-		class="com.wegneto.springdemo.TrackCoach">
+		class="com.wegneto.springdemo.TrackCoach" 
+		scope="prototype">
 		<constructor-arg ref="myFortuneService" />	
 	</bean>
 	
