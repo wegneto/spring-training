@@ -1,6 +1,9 @@
-package com.wegneto.springdemo;
+package com.wegneto.springdemo.app;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.wegneto.springdemo.coach.Coach;
+import com.wegneto.springdemo.config.SportConfig;
 
 public class JavaConfigDemoApp {
 

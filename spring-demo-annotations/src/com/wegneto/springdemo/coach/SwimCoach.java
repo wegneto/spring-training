@@ -1,6 +1,8 @@
-package com.wegneto.springdemo;
+package com.wegneto.springdemo.coach;
 
 import org.springframework.beans.factory.annotation.Value;
+
+import com.wegneto.springdemo.service.FortuneService;
 
 public class SwimCoach implements Coach {
 

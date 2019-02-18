@@ -1,9 +1,9 @@
-package com.wegneto.springdemo;
+package com.wegneto.springdemo.service;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class RESTFortuneService implements FortuneService {
+public class DatabaseFortuneService implements FortuneService {
 
 	@Override
 	public String getFortune() {

@@ -1,4 +1,4 @@
-package com.wegneto.springdemo;
+package com.wegneto.springdemo.coach;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -6,6 +6,8 @@ import javax.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import com.wegneto.springdemo.service.FortuneService;
 
 @Component
 public class TennisCoach implements Coach {

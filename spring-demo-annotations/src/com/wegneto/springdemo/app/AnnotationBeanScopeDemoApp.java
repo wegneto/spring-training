@@ -1,6 +1,8 @@
-package com.wegneto.springdemo;
+package com.wegneto.springdemo.app;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.wegneto.springdemo.coach.Coach;
 
 public class AnnotationBeanScopeDemoApp {
 	

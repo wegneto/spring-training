@@ -1,4 +1,4 @@
-package com.wegneto.springdemo;
+package com.wegneto.springdemo.service;
 
 public interface FortuneService {
 

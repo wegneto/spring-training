@@ -1,4 +1,4 @@
-package com.wegneto.springdemo;
+package com.wegneto.springdemo.service;
 
 import org.springframework.stereotype.Component;
 

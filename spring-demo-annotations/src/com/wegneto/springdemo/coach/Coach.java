@@ -1,4 +1,4 @@
-package com.wegneto.springdemo;
+package com.wegneto.springdemo.coach;
 
 public interface Coach {
 	
