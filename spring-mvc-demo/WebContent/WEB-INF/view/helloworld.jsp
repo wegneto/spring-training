@@ -6,8 +6,10 @@
 
 <body>
 Hello World of Spring!
-<br>
+<br><br>
 Student name: ${param.studentName }
+<br><br>
+Attribute 'message' from model: ${message }
 </body>
 
 </html>
