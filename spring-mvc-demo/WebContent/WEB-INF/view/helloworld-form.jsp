@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<form action="toUpperCase" method="GET">
+	<form action="processForm_v3" method="GET">
 		 <input type="text" name="studentName" placeholder="What's your name?">
 		 <input type="submit"/>
 	</form>
