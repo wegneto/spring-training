@@ -1,4 +1,4 @@
-package com.wegneto.springdemo.mvc;
+package com.wegneto.springdemo.mvc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
