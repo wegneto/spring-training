@@ -13,7 +13,7 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CourseCode {
 
-	public String value() default "ABC";
+	public String[] values() default {"ABC"};
 
 	public String message() default "must start with ABC";
 
