@@ -14,8 +14,11 @@ public class CourseCodeConstraintValidator implements ConstraintValidator<Course
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		boolean result = value.startsWith(coursePrefix);
-		return result;
+		if (value == null) {
+			return false;
+		} else {
+			return value.startsWith(coursePrefix);
+		}
 	}
 
 }
