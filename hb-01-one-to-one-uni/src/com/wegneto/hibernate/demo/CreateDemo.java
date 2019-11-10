@@ -25,9 +25,10 @@ public class CreateDemo {
 			InstructorDetail instructorDetail = new InstructorDetail("youtube.com/channel", "Code");
 			instructor.setInstructorDetail(instructorDetail);
 			
-			
 			//start a transaction
 			session.beginTransaction();
+			
+			session.save(instructor);
 			
 			//commit transaction
 			session.getTransaction().commit();
