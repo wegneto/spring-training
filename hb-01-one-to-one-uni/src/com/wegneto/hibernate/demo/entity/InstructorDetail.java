@@ -22,7 +22,6 @@ public class InstructorDetail {
 	private String hobby;
 
 	public InstructorDetail() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public InstructorDetail(String youtubeChannel, String hobby) {
