@@ -24,7 +24,7 @@ public class DeleteInstructorDetailDemo {
 			//start a transaction
 			session.beginTransaction();
 			
-			int id = 1;
+			int id = 2;
 			
 			InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
 			
