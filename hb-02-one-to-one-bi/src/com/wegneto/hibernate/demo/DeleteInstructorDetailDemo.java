@@ -34,6 +34,8 @@ public class DeleteInstructorDetailDemo {
 				System.out.println("Instructor detail: " + instructorDetail);
 				System.out.println("Instructor: " + instructorDetail.getInstructor());
 				
+				instructorDetail.getInstructor().setInstructorDetail(null);
+				
 				session.delete(instructorDetail);
 			}
 			
