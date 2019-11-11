@@ -24,20 +24,26 @@ public class GetInstructorDetailDemo {
 			//start a transaction
 			session.beginTransaction();
 			
-			int id = 1;
+			int id = 12;
 			
 			InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
 			
-			System.out.println("Instructor detail: " + instructorDetail);
-			
-			System.out.println("Instructor: " + instructorDetail.getInstructor());
+			if (instructorDetail == null) {
+				System.out.println("Instructor not found.");
+			} else {
+				System.out.println("Instructor detail: " + instructorDetail);
+				System.out.println("Instructor: " + instructorDetail.getInstructor());
+			}
 			
 			//commit transaction
 			session.getTransaction().commit();
 			
 			System.out.println("Done!");
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			System.out.println("Closing the connection.");
+			session.close();
 			factory.close();
 		}
 
