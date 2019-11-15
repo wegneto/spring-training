@@ -10,13 +10,12 @@ public class TestJdbc {
 		String jdbcUrl = "jdbc:mysql://localhost:3306/hb-01-one-to-one-uni?useSSL=false&serverTimezone=UTC";
 		String user = "root";
 		String password = "root";
-
+		
 		try {
 			System.out.println("Connecting to database: " + jdbcUrl);
 			Connection conn = DriverManager.getConnection(jdbcUrl, user, password);
 			System.out.println("Connection successful.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
