@@ -31,10 +31,13 @@ public class EagerLazyDemo {
 			
 			System.out.println(instructor);
 			
-			System.out.println(instructor.getCourses());
-			
 			//commit transaction
 			session.getTransaction().commit();
+			
+			//close the session
+			session.close();
+			
+			System.out.println(instructor.getCourses());
 			
 			System.out.println("Done!");
 		} catch (Exception e) {
