@@ -36,8 +36,6 @@ public class FetchJoinDemo {
 			
 			System.out.println(instructor);
 			
-			//System.out.println(instructor.getCourses());
-			
 			//commit transaction
 			session.getTransaction().commit();
 			
