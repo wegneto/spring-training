@@ -46,7 +46,6 @@ public class CreateCourseAndStudentsDemo {
 			session.save(student2);
 			System.out.println("Saved students: " + course.getStudents());
 			
-
 			// commit transaction
 			session.getTransaction().commit();
 
