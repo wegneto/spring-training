@@ -10,7 +10,7 @@ import com.wegneto.hibernate.demo.entity.InstructorDetail;
 import com.wegneto.hibernate.demo.entity.Review;
 import com.wegneto.hibernate.demo.entity.Student;
 
-public class CreateCourseAndStudentsDemo {
+public class AddCoursesForStudentDemo {
 
 	public static void main(String[] args) {
 		// create session factory
@@ -25,18 +25,26 @@ public class CreateCourseAndStudentsDemo {
 			// start a transaction
 			session.beginTransaction();
 
-			// get student from database
-			int studentId = 1;
-			Student student = session.get(Student.class, studentId);
+			Course course = new Course("Course " + System.currentTimeMillis());
+
+			// save the course
+			System.out.println("Saving the course..");
+			session.save(course);
+			System.out.println("Saved the course: " + course);
+
+			// create the students
+			Student student1 = new Student("John", "Doe", "john@email.com");
+			Student student2 = new Student("Mary", "Doe", "mary@email.com");
 			
-			System.out.println("Student: " + student);
-			System.out.println("Courses: " + student.getCourses());
+			// add students to the course
+			course.addStudent(student1);
+			course.addStudent(student2);
 			
-			// create more courses
-			
-			// add student to curses
-			
-			// save the courses
+			//save the students
+			System.out.println("Saving students...");
+			session.save(student1);
+			session.save(student2);
+			System.out.println("Saved students: " + course.getStudents());
 			
 			// commit transaction
 			session.getTransaction().commit();
