@@ -29,7 +29,7 @@ public class DeleteStudentDemo {
 
 			System.out.println("Loaded student: " + student);
 			System.out.println("Courses: " + student.getCourses());
-			
+
 			// delete student
 			System.out.println("Deleting student: " + student);
 			session.delete(student);
@@ -38,7 +38,7 @@ public class DeleteStudentDemo {
 			session.getTransaction().commit();
 
 			System.out.println("Done!");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
