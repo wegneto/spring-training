@@ -13,7 +13,7 @@ import com.wegneto.springdemo.entity.Customer;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -22,14 +22,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public List<Customer> getCustomers() {
 		// get the current hibernate session
 		Session session = sessionFactory.getCurrentSession();
-		
-		//create a query
+
+		// create a query
 		Query<Customer> query = session.createQuery("from Customer", Customer.class);
-		
-		//execute query and get result list
+
+		// execute query and get result list
 		List<Customer> customers = query.getResultList();
-		
-		//return the results
+
+		// return the results
 		return customers;
 	}
 
