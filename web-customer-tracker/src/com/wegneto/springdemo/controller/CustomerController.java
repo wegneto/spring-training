@@ -8,20 +8,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wegneto.springdemo.dao.CustomerDAO;
 import com.wegneto.springdemo.entity.Customer;
+import com.wegneto.springdemo.service.CustomerService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
 	@Autowired
-	private CustomerDAO customerDAO;
+	private CustomerService customerService;
 
 	@GetMapping("/list")
 	public String listCustomers(Model model) {
-		// get customers from the DAO
-		List<Customer> customers = customerDAO.getCustomers();
+		// get customers from the service
+		List<Customer> customers = customerService.getCustomers();
 
 		// add the customers to the model
 		model.addAttribute("customers", customers);
