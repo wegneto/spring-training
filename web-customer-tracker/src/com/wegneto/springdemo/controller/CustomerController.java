@@ -35,7 +35,6 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		
 		return "customer-form";
-		
 	}
 
 }
