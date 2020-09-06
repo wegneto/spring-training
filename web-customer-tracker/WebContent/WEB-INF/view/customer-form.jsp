@@ -5,7 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add New Customer</title>
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/add-customer-style.css">
 </head>
 <body>
 	<div id="wrapper">
@@ -15,9 +18,19 @@
 	</div>
 
 	<div id="container">
-		<div id="content">
-			Customer form placeholder
-		</div>
+		<h3>Save Custome</h3>
+		<form:form action="saveCustomer" modelAttribute="customer"
+			method="post">
+			<table>
+				<tbody>
+					<tr>
+						<td><label>First name:</label></td>
+						<td><form:input path="firstName" /></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</form:form>
 	</div>
 
 </body>
