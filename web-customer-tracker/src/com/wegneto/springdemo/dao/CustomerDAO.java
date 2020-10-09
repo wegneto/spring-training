@@ -7,5 +7,7 @@ import com.wegneto.springdemo.entity.Customer;
 public interface CustomerDAO {
 
 	List<Customer> getCustomers();
+
+	void saveCustomer(Customer customer);
 	
 }
