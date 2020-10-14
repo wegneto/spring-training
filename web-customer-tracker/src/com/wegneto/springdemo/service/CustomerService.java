@@ -6,14 +6,14 @@ import com.wegneto.springdemo.entity.Customer;
 
 public interface CustomerService {
 
-	List<Customer> getCustomers();
+	List<Customer> findAll();
 
-	void saveCustomer(Customer customer);
+	void save(Customer customer);
 
-	Customer getCustomer(int customerId);
+	Customer findById(int customerId);
 
 	void delete(int customerId);
 
-	List<Customer> searchCustomer(String customerName);
+	List<Customer> findByName(String customerName);
 
 }

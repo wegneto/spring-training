@@ -22,9 +22,9 @@ public class CustomerController {
 	private CustomerService customerService;
 
 	@GetMapping("/list")
-	public String listCustomers(Model model) {
+	public String list(Model model) {
 		// get customers from the service
-		List<Customer> customers = customerService.getCustomers();
+		List<Customer> customers = customerService.findAll();
 
 		// add the customers to the model
 		model.addAttribute("customers", customers);
@@ -35,7 +35,7 @@ public class CustomerController {
 	@GetMapping("/search")
 	public String search(@RequestParam("customerName") String customerName, Model model) {
 		// get customers from the service
-		List<Customer> customers = customerService.searchCustomer(customerName);
+		List<Customer> customers = customerService.findByName(customerName);
 
 		// add the customers to the model
 		model.addAttribute("customers", customers);
@@ -44,7 +44,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/showFormForAdd")
-	public String showFormForAdd(Model model) {
+	public String showAddForm(Model model) {
 		Customer customer = new Customer();
 		model.addAttribute("customer", customer);
 
@@ -52,22 +52,22 @@ public class CustomerController {
 	}
 
 	@PostMapping("/saveCustomer")
-	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-		customerService.saveCustomer(customer);
+	public String save(@ModelAttribute("customer") Customer customer) {
+		customerService.save(customer);
 
 		return "redirect:/customer/list";
 	}
 
 	@GetMapping("/showFormForUpdate")
-	public String showFormForAdd(@RequestParam("customerId") int customerId, Model model) {
-		Customer customer = customerService.getCustomer(customerId);
+	public String showUpdateForm(@RequestParam("customerId") int customerId, Model model) {
+		Customer customer = customerService.findById(customerId);
 		model.addAttribute("customer", customer);
 
 		return "customer-form";
 	}
 	
 	@GetMapping("/delete")
-	public String showFormForAdd(@RequestParam("customerId") int customerId) {
+	public String delete(@RequestParam("customerId") int customerId) {
 		customerService.delete(customerId);
 
 		return "redirect:/customer/list";
