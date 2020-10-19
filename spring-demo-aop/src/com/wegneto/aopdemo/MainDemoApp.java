@@ -3,6 +3,7 @@ package com.wegneto.aopdemo;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.wegneto.aopdemo.dao.AccountDAO;
+import com.wegneto.aopdemo.dao.MembershipDAO;
 
 public class MainDemoApp {
 
@@ -12,9 +13,13 @@ public class MainDemoApp {
 
 		// get the bean from spring container
 		AccountDAO accountDAO = context.getBean("accountDAO", AccountDAO.class);
-		
+
+		MembershipDAO membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
+
 		// call the business method
 		accountDAO.addAccount();
+
+		membershipDAO.addAccount();
 
 		// close the context
 		context.close();
