@@ -7,7 +7,7 @@ import com.wegneto.aopdemo.Account;
 @Component
 public class AccountDAO {
 	
-	public void addAccount(Account account) {
+	public void addAccount(Account account, boolean someBoolean) {
 		System.out.println(getClass() + ": ADDING ACOUNT...");
 	}
 

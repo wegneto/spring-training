@@ -18,10 +18,10 @@ public class MainDemoApp {
 
 		// call the business method
 		Account account = new Account();
-		System.out.println("First call...");
-		accountDAO.addAccount(account);
+		System.out.println("- First call...");
+		accountDAO.addAccount(account, true);
 
-		System.out.println("\nSecond call...");
+		System.out.println("\n- Second call...");
 		membershipDAO.addMemberAccount();
 
 		// close the context
