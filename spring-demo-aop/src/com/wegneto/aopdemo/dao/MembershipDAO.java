@@ -10,4 +10,9 @@ public class MembershipDAO {
 		return true;
 	}
 	
+	public boolean doSomethingElse() {
+		System.out.println(getClass() + ": DOING SOMETHING ElSE...");
+		return false;
+	}
+	
 }

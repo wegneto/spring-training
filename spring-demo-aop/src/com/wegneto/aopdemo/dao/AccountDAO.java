@@ -10,5 +10,10 @@ public class AccountDAO {
 	public void addAccount(Account account, boolean someBoolean) {
 		System.out.println(getClass() + ": ADDING ACOUNT...");
 	}
+	
+	public boolean doSomething() {
+		System.out.println(getClass() + ": DOING SOMETHING...");
+		return false;
+	}
 
 }

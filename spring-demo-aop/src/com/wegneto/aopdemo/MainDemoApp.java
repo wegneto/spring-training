@@ -20,9 +20,11 @@ public class MainDemoApp {
 		Account account = new Account();
 		System.out.println("- First call...");
 		accountDAO.addAccount(account, true);
+		accountDAO.doSomething();
 
 		System.out.println("\n- Second call...");
 		membershipDAO.addMemberAccount();
+		membershipDAO.doSomethingElse();
 
 		// close the context
 		context.close();
