@@ -12,12 +12,22 @@ public class MyDemoLoggingAspect {
 	@Pointcut("execution(* com.wegneto.aopdemo.dao.*.*(..))")
 	private void forDaoPackage() {}
 	
-	@Before("forDaoPackage()")
+	@Pointcut("execution(* com.wegneto.aopdemo.dao.*.get*(..))")
+	private void forGetterMethods() {}
+	
+	@Pointcut("execution(* com.wegneto.aopdemo.dao.*.set*(..))")
+	private void forSetterMethods() {}
+	
+	@Pointcut("forDaoPackage() && !(forGetterMethods() || forSetterMethods())")
+	private void forDaoPackageNoGetterSetter() {
+	}
+	
+	@Before("forDaoPackageNoGetterSetter()")
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n=====>>> Executing @Before advice on com.wegneto.aopdemo.dao.*.*(..)");
 	}
 	
-	@Before("forDaoPackage()")
+	@Before("forDaoPackageNoGetterSetter()")
 	public void performSomeOperation() {
 		System.out.println("=====>>> Performing some operation");
 	}

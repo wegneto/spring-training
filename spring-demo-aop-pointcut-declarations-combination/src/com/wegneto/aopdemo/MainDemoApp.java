@@ -23,9 +23,10 @@ public class MainDemoApp {
 		
 		//call getter/setters
 		accountDAO.setName("some name");
-		accountDAO.getName();
 		accountDAO.setServiceCode("some service code");
-		accountDAO.getServiceCode();
+		
+		String name = accountDAO.getName();
+		String serviceName = accountDAO.getServiceCode();
 
 		membershipDAO.addMemberAccount();
 		membershipDAO.doSomethingElse();
