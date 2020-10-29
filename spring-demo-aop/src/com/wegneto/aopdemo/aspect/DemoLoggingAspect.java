@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class MyDemoLoggingAspect {
+public class DemoLoggingAspect {
 	
 	@Before("execution(* com.wegneto.aopdemo.dao.*.*(..))")
 	public void beforeAddAccountAdvice() {
