@@ -27,8 +27,7 @@ public class MainDemoApp {
 		accountDAO.setName("some name");
 		accountDAO.setServiceCode("some service code");
 		
-		String name = accountDAO.getName();
-		String serviceName = accountDAO.getServiceCode();
+		System.out.println("accountDAO.getName(): " + accountDAO.getName() + " - accountDAO.getServiceCode(): " + accountDAO.getServiceCode());
 
 		membershipDAO.addMemberAccount();
 		membershipDAO.doSomethingElse();
