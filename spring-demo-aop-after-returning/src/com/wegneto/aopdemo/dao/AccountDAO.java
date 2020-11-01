@@ -1,6 +1,7 @@
 package com.wegneto.aopdemo.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -43,27 +44,14 @@ public class AccountDAO {
 	}
 	
 	public List<Account> findAccounts() {
-		List<Account> result = new ArrayList<Account>();
-		
 		//create sample accounts
-		Account acct1 = new Account();
-		acct1.setName("Name 1");
-		acct1.setLevel("Level 1");
+		Account acct1 = new Account("John", "Silver");
+		Account acct2 = new Account("Mary", "Platinum");
+		Account acct3 = new Account("Peter", "Gold");
 		
-		Account acct2 = new Account();
-		acct1.setName("Name 2");
-		acct1.setLevel("Level 2");
+		List<Account> accountList = Arrays.asList(acct1, acct2, acct3); 
 		
-		Account acct3 = new Account();
-		acct1.setName("Name 3");
-		acct1.setLevel("Level 3");
-		
-		//add them to the list
-		result.add(acct1);
-		result.add(acct2);
-		result.add(acct3);
-		
-		return result;
+		return accountList;
 	}
 
 }
