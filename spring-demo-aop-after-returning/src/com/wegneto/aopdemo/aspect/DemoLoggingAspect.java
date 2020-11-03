@@ -1,6 +1,9 @@
 package com.wegneto.aopdemo.aspect;
 
+import java.util.List;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -13,6 +16,12 @@ import com.wegneto.aopdemo.Account;
 @Component
 @Order(2)
 public class DemoLoggingAspect {
+	
+	@AfterReturning(pointcut="com.wegneto.aopdemo.dao.AccountDAO.findAccounts(..)",
+			returning="result")
+	public void afterReturningFindAccountAdvice(JoinPoint joinPoint, List<Account> result) {
+		
+	}
 
 	@Before("com.wegneto.aopdemo.aspect.AopExpressions.forDaoPackageNoGetterSetter()")
 	public void beforeAddAccountAdvice(JoinPoint joinPoint) {
