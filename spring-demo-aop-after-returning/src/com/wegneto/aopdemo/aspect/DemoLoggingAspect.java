@@ -17,9 +17,13 @@ import com.wegneto.aopdemo.Account;
 @Order(2)
 public class DemoLoggingAspect {
 	
-	@AfterReturning(pointcut="com.wegneto.aopdemo.dao.AccountDAO.findAccounts(..)",
+	@AfterReturning(pointcut="execution(* com.wegneto.aopdemo.dao.AccountDAO.findAccounts(..))",
 			returning="result")
 	public void afterReturningFindAccountAdvice(JoinPoint joinPoint, List<Account> result) {
+		String method = joinPoint.getSignature().toShortString();
+		System.out.println("\n====>> Executing @AfterReturning on method: " + method);
+		
+		System.out.println("\n====>> result is: " + result);
 		
 	}
 
