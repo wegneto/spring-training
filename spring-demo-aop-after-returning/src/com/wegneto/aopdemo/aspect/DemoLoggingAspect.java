@@ -25,11 +25,13 @@ public class DemoLoggingAspect {
 		
 		System.out.println("\n====>> result is: " + result);
 		
-		if (!result.isEmpty()) {
-			Account account = result.get(0);
-			account.setName(account.getName() + " UPDATED");
+		convertAccountNamesToUpperCase(result);
+	}
+
+	private void convertAccountNamesToUpperCase(List<Account> result) {
+		for (Account account : result) {
+			account.setName(account.getName().toUpperCase());
 		}
-		
 	}
 
 	@Before("com.wegneto.aopdemo.aspect.AopExpressions.forDaoPackageNoGetterSetter()")
