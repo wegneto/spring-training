@@ -25,6 +25,11 @@ public class DemoLoggingAspect {
 		
 		System.out.println("\n====>> result is: " + result);
 		
+		if (!result.isEmpty()) {
+			Account account = result.get(0);
+			account.setName(account.getName() + " UPDATED");
+		}
+		
 	}
 
 	@Before("com.wegneto.aopdemo.aspect.AopExpressions.forDaoPackageNoGetterSetter()")
