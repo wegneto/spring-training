@@ -43,7 +43,11 @@ public class AccountDAO {
 		this.serviceCode = serviceCode;
 	}
 	
-	public List<Account> findAccounts() {
+	public List<Account> findAccounts(boolean tripWire) {
+		if (tripWire) {
+			throw new RuntimeException("You're caught!");
+		}
+		
 		//create sample accounts
 		Account acct1 = new Account("John", "Silver");
 		Account acct2 = new Account("Mary", "Platinum");

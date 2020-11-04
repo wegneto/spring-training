@@ -15,7 +15,7 @@ public class AfterReturningDemoApp {
 		// get the bean from spring container
 		AccountDAO accountDAO = context.getBean("accountDAO", AccountDAO.class);
 
-		List<Account> accounts = accountDAO.findAccounts();
+		List<Account> accounts = accountDAO.findAccounts(false);
 		
 		System.out.println("\n\nMain Program: AfterReturningDemoApp");
 		System.out.println("----");
