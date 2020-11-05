@@ -26,7 +26,6 @@ public class DemoLoggingAspect {
 		System.out.println("\n====>> Executing @@AfterThrowing on method: " + method);
 		
 		System.out.println("\n====>> exception is: " + exception);
-
 	}
 	
 	
