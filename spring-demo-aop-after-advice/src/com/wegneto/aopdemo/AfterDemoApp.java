@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.wegneto.aopdemo.dao.AccountDAO;
 
-public class AfterThrowingDemoApp {
+public class AfterDemoApp {
 
 	public static void main(String[] args) {
 		// read spring config java class
