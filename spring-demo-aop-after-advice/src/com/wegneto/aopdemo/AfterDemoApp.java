@@ -18,13 +18,13 @@ public class AfterDemoApp {
 		List<Account> accounts = null;
 		
 		try {
-			boolean tripWire = true;
+			boolean tripWire = false;
 			accounts = accountDAO.findAccounts(tripWire);
 		} catch (Exception e) {
 			System.out.println("\n\nMain Program: catch exception: " + e.getMessage());
 		}
 		
-		System.out.println("\n\nMain Program: AfterThrowingDemoApp");
+		System.out.println("\n\nMain Program: AfterDemoApp");
 		System.out.println("----");
 		
 		System.out.println(accounts);
